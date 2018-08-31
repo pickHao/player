@@ -1,0 +1,33 @@
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+*.log
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+./out/
+###custom###
+out/
+production/
+customer/customer.iml
+customer/customer-pojo/pojo.iml
+customer/customer-pojo/pojo.iml
