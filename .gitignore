@@ -28,6 +28,7 @@ nbdist/
 ###custom###
 out/
 production/
-customer/customer.iml
-customer/customer-pojo/pojo.iml
-customer/customer-pojo/pojo.iml
+*.cmd
+comment/comment-web/mvnw
+*.jar
+*.class
