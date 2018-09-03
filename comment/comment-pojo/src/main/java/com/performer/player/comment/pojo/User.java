@@ -1,27 +1,26 @@
 package com.performer.player.comment.pojo;
 
 /**
- * @author: zhangzihao
+ * @author: linyunzhe
  */
 public class User {
 
-    private String id;
+	private Long id;
+    private String username;
 
-    private String Name;
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return username;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setName(String username) {
+        this.username = username;
     }
 }

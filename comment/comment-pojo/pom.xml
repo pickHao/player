@@ -10,16 +10,10 @@
 	</parent>
 
 	<groupId>com.performer.player.comment</groupId>
-	<artifactId>pojo</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<artifactId>comment-pojo</artifactId>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-	</properties>
-
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -28,6 +22,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
