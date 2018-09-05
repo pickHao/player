@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.performer.player.comment.dao.mapper.UserMapper">
 
-    <select id="getAll" resultType="com.performer.player.comment.pojo。User">
+    <select id="getAll" resultType="com.performer.player.comment.pojo.User">
         select * from user
     </select>
 	<insert id="addUserInfo" parameterType="com.performer.player.comment.pojo.User">
