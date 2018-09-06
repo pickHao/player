@@ -13,13 +13,6 @@
 	<artifactId>comment-pojo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<dependencies>
-		<dependency>
-		    <groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
-		    <artifactId>mybatis-enhance-actable</artifactId>
-		    <version>1.0.3</version>
-		</dependency>
-	</dependencies>
 	<build>
 		<plugins>
 			<plugin>

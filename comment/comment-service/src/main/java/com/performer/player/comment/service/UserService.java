@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface UserService {
 
-    public List<User> getAll();
-    public void insert(User user);
+    List<User> getAll();
+    void insert(User user);
 }

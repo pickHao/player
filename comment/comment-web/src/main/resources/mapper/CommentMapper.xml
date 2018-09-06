@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.performer.player.comment.dao.mapper.CommentMapper">
+
+    <select id="getAll" resultType="com.performer.player.comment.pojo.User">
+        select * from user
+    </select>
+	<insert id="addUserInfo" parameterType="com.performer.player.comment.pojo.User">
+        insert into user (id, username) values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="getCommentList" resultType="com.performer.player.comment.pojo.Comment">
+        SELECT * FROM comment ORDER BY create_time
+    </select>
+    <insert id="insertComment" parameterType="com.performer.player.comment.pojo.Comment">
+        INSERT INTO comment (id,content,create_time,username,number_of_praise) values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},#{create_time,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR},#{number_of_praise,jdbcType=INTEGER})
+    </insert>
+    
+</mapper>
