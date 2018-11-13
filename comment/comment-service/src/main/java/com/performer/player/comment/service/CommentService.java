@@ -1,0 +1,11 @@
+package com.performer.player.comment.service;
+
+import com.performer.player.comment.pojo.Comment;
+
+import java.util.List;
+
+public interface CommentService {
+
+    List<Comment> getCommentList();
+    void insert(Comment com);
+}
