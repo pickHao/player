@@ -6,13 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="comment-dao" />
         <module name="comment-pojo" />
+        <module name="comment-service" />
+        <module name="comment-web" />
         <module name="customer-dao" />
         <module name="customer-pojo" />
         <module name="customer-service" />
         <module name="customer-web" />
+        <module name="dao" />
         <module name="live" />
+        <module name="pojo" />
+        <module name="service" />
         <module name="video" />
+        <module name="web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
