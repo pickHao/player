@@ -6,12 +6,11 @@
 	<parent>
 		<artifactId>comment</artifactId>
 		<groupId>com.performer.player</groupId>
-		<version>1.0-SNAPSHOT</version>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.performer.player.comment</groupId>
 	<artifactId>comment-dao</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<properties>
