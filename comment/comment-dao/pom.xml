@@ -17,12 +17,13 @@
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis.boot.starter.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
+			</dependency>
 		<!-- 内部引用 -->
 		<dependency>
 			<groupId>com.performer.player.comment</groupId>

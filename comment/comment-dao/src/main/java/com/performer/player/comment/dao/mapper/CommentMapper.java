@@ -6,13 +6,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.performer.player.comment.pojo.Comment;
-import com.performer.player.comment.pojo.User;
 
 @Mapper
 public interface CommentMapper {
 
-    List<User> getAll();
-    int addUserInfo(User user);
     List<Comment> getCommentList();
     void insertComment(Comment com);
 }
