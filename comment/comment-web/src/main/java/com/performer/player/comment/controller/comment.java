@@ -41,4 +41,9 @@ public class comment {
         a.put("da", "success");
         return ResultUtil.success(a);
     }
+
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public String test(){
+        return "this is test";
+    }
 }
