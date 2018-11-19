@@ -15,7 +15,7 @@ before_install:
 - echo 'this is before_install'
 
 script:
-- mvn -pl comment -am clean package
+- mvn -pl comment -am install
 - docker build -t ${NAME} .
 - docker login -u=amanohikaru -p=${DOCKER_PASS}
 - docker tag ${NAME} amanohikaru/${NAME}
