@@ -23,12 +23,14 @@ script:
 - docker login -u=amanohikaru -p=${DOCKER_PASS}
 - docker tag ${NAME} amanohikaru/${NAME}
 - docker push amanohikaru/${NAME}
+- curl -d '' http://fe2o3.club:9000/api/webhooks/29cce1ae-e0a4-4fbe-b15e-51fa006d4da1
 
 
-- docker build -f comment/Dockerfile -t ${NAME2} .
+- docker build -f customer/Dockerfile -t ${NAME2} .
 - docker login -u=amanohikaru -p=${DOCKER_PASS}
 - docker tag ${NAME2} amanohikaru/${NAME2}
 - docker push amanohikaru/${NAME2}
+- curl -d '' http://fe2o3.club:9000/api/webhooks/70b6f908-693a-41b8-9b6a-9e38296a2239
 
 
 - echo success
