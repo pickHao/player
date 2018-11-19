@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class FristController {
 
-    @RequestMapping("index")
+    @RequestMapping("/index")
     public String pageInfo(HttpServletRequest request) {
-        return "index";
+        return "welcome";
     }
 }
