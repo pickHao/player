@@ -7,6 +7,7 @@ services:
 
 env:
   - NAME=player-comment
+  - NAME2=player-customer
 
 git:
   depth: 3
@@ -17,12 +18,18 @@ before_install:
 script:
 - echo start script
 - pwd
-- cd ./comment
 - mvn clean package
-- pwd
 
-- docker build -t ${NAME} .
+- docker build -f comment/Dockerfile -t ${NAME} .
 - docker login -u=amanohikaru -p=${DOCKER_PASS}
 - docker tag ${NAME} amanohikaru/${NAME}
 - docker push amanohikaru/${NAME}
+
+
+- docker build -f comment/Dockerfile -t ${NAME2} .
+- docker login -u=amanohikaru -p=${DOCKER_PASS}
+- docker tag ${NAME2} amanohikaru/${NAME2}
+- docker push amanohikaru/${NAME2}
+
+
 - echo success
