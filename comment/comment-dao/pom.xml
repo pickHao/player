@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			</dependency>
+		</dependency>
 		<!-- 内部引用 -->
 		<dependency>
 			<groupId>com.performer.player.comment</groupId>

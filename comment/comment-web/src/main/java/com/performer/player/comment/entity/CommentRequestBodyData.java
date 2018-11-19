@@ -1,4 +1,4 @@
-package com.performer.player.comment.pojo;
+package com.performer.player.comment.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

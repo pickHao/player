@@ -1,10 +1,10 @@
 package com.performer.player.comment.controller;
 
+import com.performer.player.comment.entity.CommentRequestBodyData;
 import com.performer.player.comment.impl.CommentImpl;
 import com.performer.player.comment.pojo.Comment;
-import com.performer.player.comment.pojo.CommentRequestBodyData;
-import com.performer.player.comment.pojo.ResultUtil;
-import com.performer.player.comment.pojo.ReturnMsg;
+import com.performer.player.common.utils.ResultUtil;
+import com.performer.player.common.utils.ReturnMsg;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
