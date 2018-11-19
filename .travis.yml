@@ -15,10 +15,10 @@ before_install:
 - echo 'this is before_install'
 
 script:
-- cd ./comment
+- echo 'script start'
 - pwd
-- mvn clean package
-- pwd
+- cd ./comment && mvn clean package
+- cd ..
 - docker build -t ${NAME} .
 - docker login -u=amanohikaru -p=${DOCKER_PASS}
 - docker tag ${NAME} amanohikaru/${NAME}
