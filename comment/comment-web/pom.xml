@@ -8,14 +8,14 @@
 		<artifactId>comment</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-
+	
 	<groupId>com.performer.player.comment</groupId>
 	<artifactId>comment-web</artifactId>
 	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.performer.player.common</groupId>
+			<groupId>com.performer.player</groupId>
 			<artifactId>common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
