@@ -1,0 +1,24 @@
+sudo: required
+
+language: java
+
+services:
+  - docker
+
+env:
+  - NAME=player-comment
+git:
+  depth: 3
+  
+before_install:
+- echo 'this is before_install'
+
+script:
+- cd ./comment/
+- mvn clean package
+- docker build -t ${NAME}  .
+- docker build -t ${NAME}  .
+- docker login -u=amanohikaru -p=${DOCKER_PASS}
+- docker tag ${NAME} amanohikaru/${NAME}
+- docker push amanohikaru/${NAME}
+- echo success
