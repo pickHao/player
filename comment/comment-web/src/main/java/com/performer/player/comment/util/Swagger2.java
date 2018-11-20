@@ -13,20 +13,20 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
  
 /**
- * Swagger2ÅäÖÃÀà
- * ÔÚÓëspring boot¼¯³ÉÊ±£¬·ÅÔÚÓëApplication.javaÍ¬¼¶µÄÄ¿Â¼ÏÂ¡£
- * Í¨¹ı@Configuration×¢½â£¬ÈÃSpringÀ´¼ÓÔØ¸ÃÀàÅäÖÃ¡£
- * ÔÙÍ¨¹ı@EnableSwagger2×¢½âÀ´ÆôÓÃSwagger2¡£
+ * Swagger2é…ç½®ç±»
+ * åœ¨ä¸spring booté›†æˆæ—¶ï¼Œæ”¾åœ¨ä¸Application.javaåŒçº§çš„ç›®å½•ä¸‹ã€‚
+ * é€šè¿‡@Configurationæ³¨è§£ï¼Œè®©Springæ¥åŠ è½½è¯¥ç±»é…ç½®ã€‚
+ * å†é€šè¿‡@EnableSwagger2æ³¨è§£æ¥å¯ç”¨Swagger2ã€‚
  */
 @Configuration
 @EnableSwagger2
 public class Swagger2 {
     
     /**
-     * ´´½¨APIÓ¦ÓÃ
-     * apiInfo() Ôö¼ÓAPIÏà¹ØĞÅÏ¢
-     * Í¨¹ıselect()º¯Êı·µ»ØÒ»¸öApiSelectorBuilderÊµÀı,ÓÃÀ´¿ØÖÆÄÄĞ©½Ó¿Ú±©Â¶¸øSwaggerÀ´Õ¹ÏÖ£¬
-     * Ö¸¶¨É¨ÃèµÄ°üÂ·¾¶À´¶¨ÒåÖ¸¶¨Òª½¨Á¢APIµÄÄ¿Â¼¡£
+     * åˆ›å»ºAPIåº”ç”¨
+     * apiInfo() å¢åŠ APIç›¸å…³ä¿¡æ¯
+     * é€šè¿‡select()å‡½æ•°è¿”å›ä¸€ä¸ªApiSelectorBuilderå®ä¾‹,ç”¨æ¥æ§åˆ¶å“ªäº›æ¥å£æš´éœ²ç»™Swaggeræ¥å±•ç°ï¼Œ
+     * æŒ‡å®šæ‰«æçš„åŒ…è·¯å¾„æ¥å®šä¹‰æŒ‡å®šè¦å»ºç«‹APIçš„ç›®å½•ã€‚
      * 
      * @return
      */
@@ -41,16 +41,15 @@ public class Swagger2 {
     }
     
     /**
-     * ´´½¨¸ÃAPIµÄ»ù±¾ĞÅÏ¢£¨ÕâĞ©»ù±¾ĞÅÏ¢»áÕ¹ÏÖÔÚÎÄµµÒ³ÃæÖĞ£©
-     * ·ÃÎÊµØÖ·£ºhttp://ÏîÄ¿Êµ¼ÊµØÖ·/swagger-ui.html
+     * åˆ›å»ºè¯¥APIçš„åŸºæœ¬ä¿¡æ¯ï¼ˆè¿™äº›åŸºæœ¬ä¿¡æ¯ä¼šå±•ç°åœ¨æ–‡æ¡£é¡µé¢ä¸­ï¼‰
+     * è®¿é—®åœ°å€ï¼šhttp://é¡¹ç›®å®é™…åœ°å€/swagger-ui.html
      * @return
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("ÆÀÂÛ½Ó¿Ú")
-                .description("ÆÀÂÛÏà¹Ø½Ó¿Ú")
-                .termsOfServiceUrl("http://www.baidu.com")
-                .contact(new Contact("name","url","email"))
+                .title("è¯„è®ºæ¥å£")
+                .description("è¯„è®ºç›¸å…³æ¥å£")
+                .contact(new Contact("lin1heart","http://fe2o3.club/gallery/","lin1heart@foxmail.com"))
                 .version("1.0")
                 .build();
     }
