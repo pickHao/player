@@ -47,7 +47,7 @@ public class comment {
         Comment com = new Comment();
         com.setContent(request.getContent());
         com.setCreate_time(request.getCreate_time());
-//        点赞默认为0/回复默认为空
+//      点赞默认为0/回复默认为空
         com.setNumber_of_praise(0);
         com.setUsername(request.getUsername());
         commentImpl.insert(com);
