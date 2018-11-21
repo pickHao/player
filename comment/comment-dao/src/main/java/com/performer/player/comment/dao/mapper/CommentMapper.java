@@ -10,6 +10,7 @@ import com.performer.player.comment.pojo.Comment;
 @Mapper
 public interface CommentMapper {
 
-    List<Comment> getCommentList();
+    List<Comment> getCommentList(Comment com);
     void insertComment(Comment com);
+    Integer getMaxFloorNum(Comment com);
 }

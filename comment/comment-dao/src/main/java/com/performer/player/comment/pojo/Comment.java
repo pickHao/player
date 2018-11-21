@@ -9,7 +9,7 @@ public class Comment {
 	/**
 	 * 评论的id（楼层数）
 	 */
-    private Long comment_id;
+    private Integer comment_id;
     /**
      * 评论的主题（视频、帖子等）的id
      */
@@ -49,10 +49,10 @@ public class Comment {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getComment_id() {
+	public Integer getComment_id() {
 		return comment_id;
 	}
-	public void setComment_id(Long comment_id) {
+	public void setComment_id(Integer comment_id) {
 		this.comment_id = comment_id;
 	}
 	public Long getTheme_id() {

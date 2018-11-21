@@ -16,12 +16,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.performer.player.comment</groupId>
-			<artifactId>comment-pojo</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.performer.player.comment</groupId>
 			<artifactId>comment-dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

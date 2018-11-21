@@ -15,8 +15,8 @@ public class CommentImpl implements CommentService{
     @Autowired
     private CommentMapper CommentMapper;
     @Override
-    public List<Comment> getCommentList() {
-        return CommentMapper.getCommentList();
+    public List<Comment> getCommentList(Comment com) {
+        return CommentMapper.getCommentList(com);
     }
 
     @Override
@@ -24,4 +24,9 @@ public class CommentImpl implements CommentService{
     public void insert(Comment com) {
         CommentMapper.insertComment(com);
     }
+
+	@Override
+	public Integer getMaxFloorNum(Comment com) {
+		return CommentMapper.getMaxFloorNum(com);
+	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface CommentService {
 
-    List<Comment> getCommentList();
+    List<Comment> getCommentList(Comment com);
     void insert(Comment com);
+    Integer getMaxFloorNum(Comment com);
 }
