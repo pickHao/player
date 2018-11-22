@@ -11,7 +11,7 @@
     	ORDER BY comment_id
     </select>
     <insert id="insertComment" parameterType="com.performer.player.comment.pojo.Comment">
-        INSERT INTO comment (id,comment_id,theme_id,theme_type,content,create_time,user_id,number_of_praise,reply_id,reply_user_id) values (#{id,jdbcType=INTEGER}, #{comment_id,jdbcType=INTEGER},#{theme_id,jdbcType=INTEGER},#{theme_type,jdbcType=INTEGER},#{content,jdbcType=VARCHAR},#{create_time,jdbcType=VARCHAR},#{user_id,jdbcType=INTEGER},#{number_of_praise,jdbcType=INTEGER},#{reply_id,jdbcType=INTEGER},#{reply_user_id,jdbcType=INTEGER})
+        INSERT INTO comment (id,comment_id,theme_id,theme_type,content,user_id,number_of_praise,reply_id,reply_user_id) values (#{id,jdbcType=INTEGER}, #{comment_id,jdbcType=INTEGER},#{theme_id,jdbcType=INTEGER},#{theme_type,jdbcType=INTEGER},#{content,jdbcType=VARCHAR},#{user_id,jdbcType=INTEGER},#{number_of_praise,jdbcType=INTEGER},#{reply_id,jdbcType=INTEGER},#{reply_user_id,jdbcType=INTEGER})
     </insert>
     <select id="getMaxFloorNum" resultType="Integer">
     	SELECT max(comment_id) FROM comment

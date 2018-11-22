@@ -1,6 +1,7 @@
 package com.performer.player.comment.controller;
 
 import com.performer.player.comment.entity.CommentRequestBodyData;
+import com.performer.player.comment.entity.PraiseRequestBodyData;
 import com.performer.player.comment.impl.CommentImpl;
 import com.performer.player.comment.pojo.Comment;
 import com.performer.player.comment.util.Const;
@@ -46,7 +47,7 @@ public class comment {
     }
 
     @RequestMapping(value = "/addComment",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value="评论", notes = "单纯评论，默认点赞数为0，目前没有回复")
+    @ApiOperation(value="评论", notes = "单纯评论，默认点赞数为0")
     @ApiImplicitParams({
     	@ApiImplicitParam(paramType = "query", name = "co", value = "评论内容", required = true, dataType = "String"),
     	@ApiImplicitParam(paramType = "query", name = "usid", value = "用户id", required = true, dataType = "Long"),
@@ -55,7 +56,7 @@ public class comment {
     	@ApiImplicitParam(paramType = "query", name = "thid", value = "评论的帖子对象id", required = true, dataType = "Long"),
     	@ApiImplicitParam(paramType = "query", name = "reuid", value = "回复的用户id", required = false, dataType = "Long")
     })
-    public ReturnMsg addComment(@RequestBody CommentRequestBodyData request){
+    public ReturnMsg<?> addComment(@RequestBody CommentRequestBodyData request){
     	if(paramterCheck(request)){
     		return ResultUtil.error(-101, "参数错误");
     	}
@@ -73,6 +74,25 @@ public class comment {
         com.setTheme_type(request.getTheme_type());
         commentImpl.insert(com);
         Map<String, String> a = new HashMap<String, String>();
+        a.put("da", "success");
+        return ResultUtil.success(a);
+    }
+    
+
+    @RequestMapping(value = "/addPraise",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value="点赞", notes = "根据被点赞的评论id")
+    @ApiImplicitParams({
+    	@ApiImplicitParam(paramType = "query", name = "id", value = "评论id", required = true, dataType = "Long"),
+    	@ApiImplicitParam(paramType = "query", name = "usid", value = "用户id", required = true, dataType = "Long"),
+    	@ApiImplicitParam(paramType = "query", name = "prfid", value = "被点赞的楼层id", required = false, dataType = "Integer"),
+    	@ApiImplicitParam(paramType = "query", name = "pruid", value = "被点赞的用户id", required = true, dataType = "Long"),
+    })
+    public ReturnMsg<?> addPraise(@RequestBody PraiseRequestBodyData request){
+    	if(paramterCheck(request)){
+    		return ResultUtil.error(-101, "参数错误");
+    	}
+    	
+    	Map<String, String> a = new HashMap<String, String>();
         a.put("da", "success");
         return ResultUtil.success(a);
     }
@@ -112,6 +132,10 @@ public class comment {
 		if(request.getUser_id()==null){
 			return true;
 		}
+		return false;
+	}
+	private boolean paramterCheck(PraiseRequestBodyData request) {
+		
 		return false;
 	}
 }
