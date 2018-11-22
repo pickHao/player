@@ -49,7 +49,6 @@ public class comment {
     @ApiOperation(value="评论", notes = "单纯评论，默认点赞数为0，目前没有回复")
     @ApiImplicitParams({
     	@ApiImplicitParam(paramType = "query", name = "co", value = "评论内容", required = true, dataType = "String"),
-    	@ApiImplicitParam(paramType = "query", name = "crti", value = "创建时间", required = true, dataType = "String"),
     	@ApiImplicitParam(paramType = "query", name = "usid", value = "用户id", required = true, dataType = "Long"),
     	@ApiImplicitParam(paramType = "query", name = "reid", value = "回复的楼层id", required = false, dataType = "Integer"),
     	@ApiImplicitParam(paramType = "query", name = "thty", value = "评论的主题类型", required = true, dataType = "int"),
@@ -64,7 +63,6 @@ public class comment {
     	
         Comment com = new Comment();
         com.setContent(request.getContent());
-        com.setCreate_time(request.getCreate_time());
         com.setComment_id(num);
 //      点赞默认为0
         com.setNumber_of_praise(0);
@@ -105,10 +103,6 @@ public class comment {
 		if(StringUtils.isNullOrSpace(request.getContent())){
 			return true;
 		}
-		if(StringUtils.isNullOrSpace(request.getCreate_time())){
-			return true;
-		}
-		
 		if(Const.valueOf(request.getTheme_type())==null){
 			return true;
 		}

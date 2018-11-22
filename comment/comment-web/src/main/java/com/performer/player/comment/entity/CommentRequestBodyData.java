@@ -21,10 +21,6 @@ public class CommentRequestBodyData {
 	 */
 	private static final String THEME_ID = "thid";
 	/**
-	 * 创建时间
-	 */
-	private static final String CREATE_TIME = "crti";
-	/**
 	 * 用户id
 	 */
 	private static final String USER_ID = "usid";
@@ -46,9 +42,6 @@ public class CommentRequestBodyData {
 	@JsonProperty(THEME_ID)
 	private Long theme_id;
 
-	@JsonProperty(CREATE_TIME)
-    private String create_time;
-
 	@JsonProperty(USER_ID)
     private Long user_id;
 
@@ -68,10 +61,6 @@ public class CommentRequestBodyData {
 
 	public String getContent() {
 		return content;
-	}
-
-	public String getCreate_time() {
-		return create_time;
 	}
 
 	public Long getUser_id() {
