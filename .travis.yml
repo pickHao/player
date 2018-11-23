@@ -32,5 +32,11 @@ script:
 - docker push amanohikaru/${NAME2}
 - curl -d '' http://fe2o3.club:9000/api/webhooks/70b6f908-693a-41b8-9b6a-9e38296a2239
 
+- docker build -f video/Dockerfile -t ${NAME3} .
+- docker login -u=amanohikaru -p=${DOCKER_PASS}
+- docker tag ${NAME3} amanohikaru/${NAME3}
+- docker push amanohikaru/${NAME3}
+- curl -d '' http://fe2o3.club:9000/api/webhooks/aa31235b-59bd-4e45-a2ab-6f3f12445613
+
 
 - echo success

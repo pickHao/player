@@ -1,6 +1,6 @@
 
-accessid = 'LTAIdUg5ZuweKsAV'
-accesskey = 'OQSfGqKmeq03gYJTT4SD0IcRL5YTUo'
+accessid = ''
+accesskey = ''
 host = ''
 policyBase64 = ''
 signature = ''
@@ -27,7 +27,7 @@ function send_request()
     if (xmlhttp!=null)
     {
         // serverUrl是 用户获取 '签名和Policy' 等信息的应用服务器的URL，请将下面的IP和Port配置为您自己的真实信息。
-        serverUrl = 'http://127.0.0.1:8081/getOssSign'
+        serverUrl = 'https://fe2o3.club/player/video/getOssSign'
 		
         xmlhttp.open( "GET", serverUrl, false );
         xmlhttp.send( null );
