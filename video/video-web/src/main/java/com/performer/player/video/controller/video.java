@@ -43,7 +43,7 @@ public class video {
   	@RequestMapping(value = "/getOssSign",method = RequestMethod.GET)
     public getOssSignResponseBodyData getOssSign(){
     	getOssSignResponseBodyData da = new getOssSignResponseBodyData();
-    	String host = "http://" + bucket + "." + endpoint;
+    	String host = "https://" + bucket + "." + endpoint;
 		OSSClient client = new OSSClient(endpoint, accessId, accessKey);
 		try {
 			long expireEndTime = System.currentTimeMillis() + expireTime * 1000;
