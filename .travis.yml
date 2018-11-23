@@ -6,7 +6,7 @@ services:
   - docker
 
 env:
-  - NAME=player-comment NAME2=player-customer
+  - NAME=player-comment NAME2=player-customer NAME3=player-video
 
 git:
   depth: 3
