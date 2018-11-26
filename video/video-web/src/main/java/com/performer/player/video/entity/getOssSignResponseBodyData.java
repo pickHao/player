@@ -16,7 +16,7 @@ public class getOssSignResponseBodyData {
 	private static final String HOST = "host";
 	private static final String EXPIRE = "expire";
 	private static final String CALL_BACK = "callback";
-	
+	private static final String CALL_BACK_VAR = "callback-var";
 	/**
 	 * OSSAccessKeyId
 	 */
@@ -52,7 +52,18 @@ public class getOssSignResponseBodyData {
 	 */
 	@JsonProperty(CALL_BACK)
 	private String callback;
+	/**
+	 * 自定义回调参数
+	 */
+	@JsonProperty(CALL_BACK_VAR)
+	private String callbackvar;
 	
+	public String getCallbackvar() {
+		return callbackvar;
+	}
+	public void setCallbackvar(String callbackvar) {
+		this.callbackvar = callbackvar;
+	}
 	public String getAccessid() {
 		return accessid;
 	}

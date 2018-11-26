@@ -6,5 +6,4 @@ public class callBackBodyData {
 	public String size;
 	public String object;
 	public String etag;
-
 }
