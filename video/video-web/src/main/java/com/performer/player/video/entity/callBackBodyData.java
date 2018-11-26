@@ -2,39 +2,39 @@ package com.performer.player.video.entity;
 
 public class callBackBodyData {
 	/**
-	 * oss´æ´¢¿Õ¼ä
+	 * osså­˜å‚¨ç©ºé—´
 	 */
 	public String bucket;
 	/**
-	 * ´æ´¢ÎÄ¼şÀàĞÍ
+	 * å­˜å‚¨æ–‡ä»¶ç±»å‹
 	 */
 	public String mimeType;
 	/**
-	 * ÎÄ¼ş´óĞ¡
+	 * æ–‡ä»¶å¤§å°
 	 */
 	public String size;
 	/**
-	 * ´æ·ÅÂ·¾¶ url
+	 * å­˜æ”¾è·¯å¾„ url
 	 */
 	public String object;
 	/**
-	 * µ¥¸öÎÄ¼şµÄmd5Âë£¨·Ö¶ÎÉÏ´«µÄÎÄ¼şÃ¿¶ÎµÄmd5¶¼²»Í¬£©
+	 * å•ä¸ªæ–‡ä»¶çš„md5ç ï¼ˆåˆ†æ®µä¸Šä¼ çš„æ–‡ä»¶æ¯æ®µçš„md5éƒ½ä¸åŒï¼‰
 	 */
 	public String etag;
 	/**
-	 * Í¼Æ¬³¤ ÉÏ´«ÊÇÍ¼Æ¬µÄÇé¿öÏÂ
+	 * å›¾ç‰‡é•¿ ä¸Šä¼ æ˜¯å›¾ç‰‡çš„æƒ…å†µä¸‹
 	 */
 	public String imageHeight;
 	/**
-	 * Í¼Æ¬¿í
+	 * å›¾ç‰‡å®½
 	 */
 	public String imageWidth;
 	/**
-	 * Í¼Æ¬ÀàĞÍ
+	 * å›¾ç‰‡ç±»å‹
 	 */
 	public String imageType;
 	/**
-	 * ×Ô¶¨Òå²ÎÊı ÓÃ»§id
+	 * è‡ªå®šä¹‰å‚æ•° ç”¨æˆ·id
 	 */
 	public String user_id;
 	public String getBucket() {
