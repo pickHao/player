@@ -18,6 +18,8 @@ import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -63,7 +65,7 @@ public class video {
   	@Value("${oss.callback.url}")
   	private String callbackUrl;
   	//发起回调时body的值 支持oss系统变量、自定义变量和常量
-//  	private String callbackBody = "{\"bucket\":${bucket},\"mimeType\":${mimeType},\"size\":${size},\"object\":${object},\"etag\":${etag},\"imageHeight\":${imageInfo.height},\"imageWidth\":${imageInfo.width},\"imageType\":${imageInfo.format},\"user_id\":123456}";
+  	private String callbackBody = "{\"bucket\":${bucket},\"mimeType\":${mimeType},\"size\":${size},\"object\":${object},\"etag\":${etag},\"imageHeight\":${imageInfo.height},\"imageWidth\":${imageInfo.width},\"imageType\":${imageInfo.format}}";
   	
   	@RequestMapping(value = "/getOssSign",method = RequestMethod.GET)
     public getOssSignResponseBodyData getOssSign(HttpServletRequest request, HttpServletResponse response){
@@ -79,19 +81,19 @@ public class video {
 			policyConds.addConditionItem(PolicyConditions.COND_CONTENT_LENGTH_RANGE, 0, policyMaxSize);
 
 			String postPolicy = client.generatePostPolicy(expiration, policyConds);
-//			Map<String, String> callbackMap = new LinkedHashMap<String, String>();
-			Long userId = (long) 1234567890;
-			JSONObject jasonCallback = new JSONObject();
-			jasonCallback.put("callbackUrl", callbackUrl);
-			jasonCallback.put("callbackBody",
-					"filename=${object}&size=${size}&mimeType=${mimeType}&imageHeight=${imageInfo.height}&imageWidth=${imageInfo.width}&user_id="+userId+"");
-			jasonCallback.put("callbackBodyType", "application/json");
+			Map<String, String> callbackMap = new LinkedHashMap<String, String>();
+//			Long userId = (long) 1234567890;
+//			JSONObject jasonCallback = new JSONObject();
+//			jasonCallback.put("callbackUrl", callbackUrl);
+//			jasonCallback.put("callbackBody",
+//					"filename=${object}&size=${size}&mimeType=${mimeType}&imageHeight=${imageInfo.height}&imageWidth=${imageInfo.width}&user_id="+userId+"");
+//			jasonCallback.put("callbackBodyType", "application/json");
 			
-//			callbackMap.put("callbackUrl", callbackUrl);
-//			callbackMap.put("callbackBody", callbackBody);
-//			callbackMap.put("callbackBodyType", "application/json");
-//			JSONObject callbackJson = JSONObject.fromObject(callbackMap);
-			byte[] callbackData = jasonCallback.toString().getBytes("utf-8");
+			callbackMap.put("callbackUrl", callbackUrl);
+			callbackMap.put("callbackBody", callbackBody);
+			callbackMap.put("callbackBodyType", "application/json");
+			JSONObject callbackJson = JSONObject.fromObject(callbackMap);
+			byte[] callbackData = callbackJson.toString().getBytes("utf-8");
 			byte[] binaryData = postPolicy.getBytes("utf-8");
 			String encodedPolicy = BinaryUtil.toBase64String(binaryData);
 			String postSignature = client.calculatePostSignature(postPolicy);
