@@ -223,6 +223,7 @@ public class video {
 		String retString = executeGet(pubKeyAddr);
 		retString = retString.replace("-----BEGIN PUBLIC KEY-----", "");
 		retString = retString.replace("-----END PUBLIC KEY-----", "");
+		LOG.info("public key is"+retString);
 		String queryString = request.getQueryString();
 		String uri = request.getRequestURI();
 		String decodeUri = java.net.URLDecoder.decode(uri, "UTF-8");
@@ -231,6 +232,8 @@ public class video {
 			authStr += "?" + queryString;
 		}
 		authStr += "\n" + ossCallbackBody;
+		LOG.info("content is:"+authStr);
+		LOG.info("sign is:"+authorization);
 		ret = doCheck(authStr, authorization, retString);
 		return ret;
 	}
