@@ -120,10 +120,10 @@ public class video {
 		boolean ret = VerifyOSSCallbackRequest(request, ossCallbackBody);
 		System.out.println("verify result : " + ret);
 		LOG.info("OSS Callback Body:" + ossCallbackBody);
-		Gson gson = new Gson();
-		callBackBodyData resData = gson.fromJson(ossCallbackBody, callBackBodyData.class);
-		Long id = resData.getUser_id();
-		LOG.info(""+id);
+//		Gson gson = new Gson();
+//		callBackBodyData resData = gson.fromJson(ossCallbackBody, callBackBodyData.class);
+//		Long id = resData.getUser_id();
+//		LOG.info(""+id);
 		
 		if (ret) {
 			response(request, response, "{\"Status\":\"OK\"}", HttpServletResponse.SC_OK);
