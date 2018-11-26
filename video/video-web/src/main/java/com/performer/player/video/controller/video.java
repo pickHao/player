@@ -160,6 +160,7 @@ public class video {
 		boolean ret = false;	
 		String autorizationInput = new String(request.getHeader("Authorization"));
 		String pubKeyInput = request.getHeader("x-oss-pub-key-url");//公钥
+		LOG.info("pubKeyInput is:"+pubKeyInput);
 		byte[] authorization = BinaryUtil.fromBase64String(autorizationInput);
 		byte[] pubKey = BinaryUtil.fromBase64String(pubKeyInput);
 		String pubKeyAddr = new String(pubKey);
@@ -172,13 +173,16 @@ public class video {
 		retString = retString.replace("-----BEGIN PUBLIC KEY-----", "");
 		retString = retString.replace("-----END PUBLIC KEY-----", "");
 		String queryString = request.getQueryString();
+		LOG.info("queryString is:"+queryString);
 		String uri = request.getRequestURI();
+		LOG.info("uri is:"+uri);
 		String decodeUri = java.net.URLDecoder.decode(uri, "UTF-8");
 		String authStr = decodeUri;
 		if (queryString != null && !queryString.equals("")) {
 			authStr += "?" + queryString;
 		}
 		authStr += "\n" + ossCallbackBody;
+		LOG.info("authStr is:"+authStr);
 		ret = doCheck(authStr, authorization, retString);
 		return ret;
 	}
