@@ -1,13 +1,13 @@
 package com.performer.player.customer.web.controller;
 
 
+import com.performer.player.customer.web.entity.CustomerRequestBodyData;
+import com.performer.player.customer.web.entity.ResultMsg;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.apache.coyote.Response;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +22,13 @@ public class FristController {
     @ApiOperation(value = "用户信息",notes = "根据UserId查询信息")
     @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "String")
     @RequestMapping(value = "user",method = RequestMethod.POST)
-    public String pageInfo(@RequestBody String userId) {
-        return "welcome";
+    public ResultMsg pageInfo(@RequestHeader String token,
+                              @RequestBody CustomerRequestBodyData userParam) {
+
+        ResultMsg msg = new ResultMsg();
+
+
+        return null;
+
     }
 }
