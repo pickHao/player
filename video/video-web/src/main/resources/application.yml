@@ -13,9 +13,8 @@ server:
 #  type-aliases-package: com.performer.player.video.pojo
   
 oss:
-#  callback:
-#    host: 
-#    url: 
+  callback:
+    url: https://fe2o3.club/player/video/callback
   endpoint: oss-cn-shanghai.aliyuncs.com
   access:
     id: LTAIdUg5ZuweKsAV
