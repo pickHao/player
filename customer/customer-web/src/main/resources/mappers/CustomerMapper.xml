@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.performer.player.customer.web.dao.CustomerMapper">
-    <resultMap id="BaseResultMap" type="com.comstar.cnp.cockpit.domain.User">
-        <id property="serialNumber" column="SERIAL_NUMBER" jdbcType="CHAR" />
-        <result property="firstType" column="FIRST_TYPE" jdbcType="CHAR"/>
-        <result property="secondType" column="SECOND_TYPE" jdbcType="CHAR"/>
-        <result property="valPecetage" column="VAL_PECETAGE" jdbcType="NUMERIC"/>
-        <result property="valScale" column="VAL_SCALE" jdbcType="NUMERIC"/>
-        <result property="plRate" column="PL_RATE" jdbcType="NUMERIC"/>
-        <result property="periodPepayment" column="PERIOD_REPAYMENT" jdbcType="NUMERIC"/>
-        <result property="periodDuration" column="PERIOD_DURATION" jdbcType="NUMERIC"/>
-    </resultMap>
-    <select id="getCommentList" resultType="com.performer.player.comment.pojo.Comment">
+    <resultMap id="BaseResultMap" type="com.performer.player.customer.web.pojo.User">
+        <id property="userId" column="userId" jdbcType="CHAR" />
+        <result property="userName" column="userName" jdbcType="CHAR"/>
+        <result property="acount" column="acount" jdbcType="CHAR"/>
+        <result property="telephoneNumber" column="telephoneNumber" jdbcType="NUMERIC"/>
+        <result property="email" column="email" jdbcType="NUMERIC"/>
+        <result property="password" column="password" jdbcType="NUMERIC"/>
+   </resultMap>
+
+    <select id="getUserInfo" resultMap="BaseResultMap">
         SELECT * FROM PLAYER_USER
         WHERE
     	ORDER BY comment_id
