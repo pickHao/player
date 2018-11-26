@@ -66,7 +66,7 @@ public class video {
 //  	private String callbackBody = "{\"bucket\":${bucket},\"mimeType\":${mimeType},\"size\":${size},\"object\":${object},\"etag\":${etag},\"imageHeight\":${imageInfo.height},\"imageWidth\":${imageInfo.width},\"imageType\":${imageInfo.format},\"user_id\":123456}";
   	
   	@RequestMapping(value = "/getOssSign",method = RequestMethod.GET)
-    public getOssSignResponseBodyData getOssSign(){
+    public getOssSignResponseBodyData getOssSign(HttpServletRequest request, HttpServletResponse response){
     	getOssSignResponseBodyData da = new getOssSignResponseBodyData();
     	String host = "https://" + bucket + "." + endpoint;
 		OSSClient client = new OSSClient(endpoint, accessId, accessKey);
@@ -103,6 +103,8 @@ public class video {
 			da.setHost(host);
 			da.setExpire(String.valueOf(expireEndTime / 1000));
 			da.setCallback(BinaryUtil.toBase64String(callbackData));
+			response.setHeader("Access-Control-Allow-Origin", "*");
+			response.setHeader("Access-Control-Allow-Methods", "GET, POST");
 		} catch (Exception e) {
 			LOG.debug(e.getMessage());
 		} finally{
