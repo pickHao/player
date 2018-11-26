@@ -85,7 +85,7 @@ public class video {
 			jasonCallback.put("callbackUrl", callbackUrl);
 			jasonCallback.put("callbackBody",
 					"filename=${object}&size=${size}&mimeType=${mimeType}&imageHeight=${imageInfo.height}&imageWidth=${imageInfo.width}&user_id="+userId+"");
-			jasonCallback.put("callbackBodyType", "application/x-www-form-urlencoded");
+			jasonCallback.put("callbackBodyType", "application/json");
 			
 //			callbackMap.put("callbackUrl", callbackUrl);
 //			callbackMap.put("callbackBody", callbackBody);
@@ -103,8 +103,6 @@ public class video {
 			da.setHost(host);
 			da.setExpire(String.valueOf(expireEndTime / 1000));
 			da.setCallback(BinaryUtil.toBase64String(callbackData));
-			response.setHeader("Access-Control-Allow-Origin", "*");
-			response.setHeader("Access-Control-Allow-Methods", "GET, POST");
 		} catch (Exception e) {
 			LOG.debug(e.getMessage());
 		} finally{
