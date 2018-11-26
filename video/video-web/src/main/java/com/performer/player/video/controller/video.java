@@ -54,7 +54,7 @@ public class video {
   	@Value("${oss.callback.url}")
   	private String callbackUrl;
   	//发起回调时body的值 支持oss系统变量、自定义变量和常量
-  	private String callbackBody = "{\"bucket\":${bucket},\"mimeType\":${mimeType},\"size\":${size},\"object\":${object},\"etag\":${etag},\"imageInfo.height\":${imageInfo.height},\"imageInfo.width\":${imageInfo.width},\"imageInfo.format\":${imageInfo.format},\"user_id\":${x:user_id}}";
+  	private String callbackBody = "{\"bucket\":${bucket},\"mimeType\":${mimeType},\"size\":${size},\"object\":${object},\"etag\":${etag},\"imageInfo.height\":${imageInfo.height},\"imageInfo.width\":${imageInfo.width},\"imageInfo.format\":${imageInfo.format},\"user_id\":123456}";
   	
   	@RequestMapping(value = "/getOssSign",method = RequestMethod.GET)
     public getOssSignResponseBodyData getOssSign(){
@@ -80,11 +80,6 @@ public class video {
 			String encodedPolicy = BinaryUtil.toBase64String(binaryData);
 			String postSignature = client.calculatePostSignature(postPolicy);
 			
-			Map<String, Long> callbackvar = new LinkedHashMap<String, Long>();
-			callbackvar.put("x:user_id", (long) 132456);
-			JSONObject callbackJsonvar = JSONObject.fromObject(callbackvar);
-			byte[] callbackDatavar = callbackJsonvar.toString().getBytes("utf-8");
-			
 			da.setAccessid(accessId);
 			da.setPolicy(encodedPolicy);
 			da.setSignature(postSignature);
@@ -92,7 +87,6 @@ public class video {
 			da.setHost(host);
 			da.setExpire(String.valueOf(expireEndTime / 1000));
 			da.setCallback(BinaryUtil.toBase64String(callbackData));
-			da.setCallbackvar(BinaryUtil.toBase64String(callbackDatavar));
 		} catch (Exception e) {
 			LOG.debug(e.getMessage());
 		} finally{
@@ -108,8 +102,6 @@ public class video {
 		try {
 			String ossCallbackBody = GetPostBody(request.getInputStream(), Integer.parseInt(request.getHeader("content-length")));
 			LOG.info("oss is:"+ossCallbackBody);
-			String aa = request.getParameter("imageInfo.height");
-			LOG.info("imageInfo.height:"+aa);
 //			boolean ret = VerifyOSSCallbackRequest(request, ossCallbackBody);
 //			callBackBodyData advertiseData = null;
 //			try {

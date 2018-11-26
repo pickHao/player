@@ -5,7 +5,6 @@ host = ''
 policyBase64 = ''
 signature = ''
 callbackbody = ''
-callbackvar = ''
 filename = ''
 key = ''
 expire = 0
@@ -66,7 +65,6 @@ function get_signature()
         signature = obj['signature']
         expire = parseInt(obj['expire'])
         callbackbody = obj['callback'] 
-        callbackvar = obj['callback-var']
         key = obj['dir']
         return true;
     }
@@ -138,7 +136,6 @@ function set_upload_param(up, filename, ret)
         'success_action_status' : '200', //让服务端返回200,不然，默认会返回204
         'callback' : callbackbody,
         'signature': signature,
-        'callback-var': callbackvar
     };
 
     up.setOption({
