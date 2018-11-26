@@ -66,7 +66,7 @@ function get_signature()
         signature = obj['signature']
         expire = parseInt(obj['expire'])
         callbackbody = obj['callback'] 
-        callbackvar = obj['callbackvar']
+        callbackvar = obj['callback-var']
         key = obj['dir']
         return true;
     }
