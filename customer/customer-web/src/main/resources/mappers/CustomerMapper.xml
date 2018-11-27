@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.performer.player.customer.web.dao.CustomerMapper">
+<mapper namespace="com.performer.player.customer.web.dao.UserMapper">
     <resultMap id="BaseResultMap" type="com.performer.player.customer.web.pojo.User">
-        <id property="userId" column="userId" jdbcType="CHAR" />
-        <result property="userName" column="userName" jdbcType="CHAR"/>
-        <result property="acount" column="acount" jdbcType="CHAR"/>
-        <result property="telephoneNumber" column="telephoneNumber" jdbcType="NUMERIC"/>
-        <result property="email" column="email" jdbcType="NUMERIC"/>
-        <result property="password" column="password" jdbcType="NUMERIC"/>
+        <id property="userId" column="user_id" jdbcType="INTEGER" />
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="acount" column="acount" jdbcType="VARCHAR"/>
+        <result property="telephoneNumber" column="telephone_number" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
    </resultMap>
 
     <select id="getUserInfo" resultMap="BaseResultMap">
         SELECT * FROM PLAYER_USER
-        WHERE
-    	ORDER BY comment_id
+        <where>
+            <if test="acount !=null">acount=${acount}</if>
+        </where>
     </select>
 
 </mapper>

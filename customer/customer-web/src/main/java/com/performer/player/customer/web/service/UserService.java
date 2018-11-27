@@ -7,7 +7,7 @@ public interface UserService {
     /**
      * 登录
      */
-    User userEnter();
+    User queryUserInfoByName(String account);
 
 
 }
