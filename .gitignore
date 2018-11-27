@@ -33,3 +33,8 @@ production/
 comment/comment-web/mvnw
 *.jar
 *.class
+
+
+
+#### mac ###
+.DS_Store
