@@ -90,6 +90,7 @@ public class video {
 //			jasonCallback.put("callbackBodyType", "application/json");
 			
 			callbackMap.put("callbackUrl", callbackUrl);
+			callbackMap.put("callbackHost", "fe2o3.club");
 			callbackMap.put("callbackBody", callbackBody);
 			callbackMap.put("callbackBodyType", "application/json");
 			JSONObject callbackJson = JSONObject.fromObject(callbackMap);
