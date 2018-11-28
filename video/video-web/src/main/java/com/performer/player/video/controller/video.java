@@ -65,7 +65,7 @@ public class video {
   	@Value("${oss.callback.url}")
   	private String callbackUrl;
   	//发起回调时body的值 支持oss系统变量、自定义变量和常量
-  	private String callbackBody = "{\"bucket\":${bucket},\"mimeType\":${mimeType},\"size\":${size},\"object\":${object},\"etag\":${etag},\"imageHeight\":${imageInfo.height},\"imageWidth\":${imageInfo.width},\"imageType\":${imageInfo.format}}";
+  	private String callbackBody = "{\"mimeType\":${mimeType},\"size\":${size},\"object\":${object},\"etag\":${etag}}";
   	
   	@RequestMapping(value = "/getOssSign",method = RequestMethod.GET)
     public getOssSignResponseBodyData getOssSign(HttpServletRequest request, HttpServletResponse response){
