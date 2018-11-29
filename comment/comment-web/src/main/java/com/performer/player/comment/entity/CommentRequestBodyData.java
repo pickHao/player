@@ -37,7 +37,7 @@ public class CommentRequestBodyData {
     private String content;
 	
 	@JsonProperty(THEME_TYPE)
-	private int theme_type;
+	private String theme_type;
 	
 	@JsonProperty(THEME_ID)
 	private Long theme_id;
@@ -55,7 +55,7 @@ public class CommentRequestBodyData {
 		return theme_id;
 	}
 
-	public int getTheme_type() {
+	public String getTheme_type() {
 		return theme_type;
 	}
 

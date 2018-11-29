@@ -17,7 +17,7 @@ public class Comment {
     /**
      * 评论的主题类型
      */
-    private int theme_type;
+    private String theme_type;
     /**
      * 评论内容
      */
@@ -61,10 +61,10 @@ public class Comment {
 	public void setTheme_id(Long theme_id) {
 		this.theme_id = theme_id;
 	}
-	public int getTheme_type() {
+	public String getTheme_type() {
 		return theme_type;
 	}
-	public void setTheme_type(int theme_type) {
+	public void setTheme_type(String theme_type) {
 		this.theme_type = theme_type;
 	}
 	public String getContent() {

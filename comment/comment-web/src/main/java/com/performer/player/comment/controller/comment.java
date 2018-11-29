@@ -35,10 +35,10 @@ public class comment {
     @RequestMapping(value = "/{thty}/{thid}/getAll",method = RequestMethod.GET)
     @ApiOperation(value = "获取某个视频评论信息")
     @ApiImplicitParams({
-    	@ApiImplicitParam(paramType = "path", name = "thty", value = "评论的主题类型", required = true, dataType = "int"),
+    	@ApiImplicitParam(paramType = "path", name = "thty", value = "评论的主题类型", required = true, dataType = "String"),
     	@ApiImplicitParam(paramType = "path", name = "thid", value = "评论的帖子对象id", required = true, dataType = "Long"),
     })
-    public List<Comment> getAll(@PathVariable("thid") Long theme_id, @PathVariable("thty") int theme_type){
+    public List<Comment> getAll(@PathVariable("thid") Long theme_id, @PathVariable("thty") String theme_type){
     	Comment com = new Comment();
     	com.setTheme_id(theme_id);
     	com.setTheme_type(theme_type);
@@ -52,7 +52,7 @@ public class comment {
     	@ApiImplicitParam(paramType = "query", name = "co", value = "评论内容", required = true, dataType = "String"),
     	@ApiImplicitParam(paramType = "query", name = "usid", value = "用户id", required = true, dataType = "Long"),
     	@ApiImplicitParam(paramType = "query", name = "reid", value = "回复的楼层id", required = false, dataType = "Integer"),
-    	@ApiImplicitParam(paramType = "query", name = "thty", value = "评论的主题类型", required = true, dataType = "int"),
+    	@ApiImplicitParam(paramType = "query", name = "thty", value = "评论的主题类型", required = true, dataType = "String"),
     	@ApiImplicitParam(paramType = "query", name = "thid", value = "评论的帖子对象id", required = true, dataType = "Long"),
     	@ApiImplicitParam(paramType = "query", name = "reuid", value = "回复的用户id", required = false, dataType = "Long")
     })
@@ -103,7 +103,7 @@ public class comment {
      * @param theme_type
      * @return
      */
-	private Integer searchMaxFloor(Long theme_id, int theme_type) {
+	private Integer searchMaxFloor(Long theme_id, String theme_type) {
     	Comment searchCom = new Comment();
     	searchCom.setTheme_id(theme_id);
     	searchCom.setTheme_type(theme_type);
