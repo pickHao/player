@@ -123,7 +123,7 @@ public class comment {
 		if(StringUtils.isNullOrSpace(request.getContent())){
 			return true;
 		}
-		if(Const.valueOf(request.getTheme_type())==null){
+		if(StringUtils.isNullOrSpace(request.getTheme_type())){
 			return true;
 		}
 		if(request.getTheme_id()==null){
