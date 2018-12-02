@@ -4,7 +4,6 @@ import com.performer.player.comment.entity.CommentRequestBodyData;
 import com.performer.player.comment.entity.PraiseRequestBodyData;
 import com.performer.player.comment.impl.CommentImpl;
 import com.performer.player.comment.pojo.Comment;
-import com.performer.player.comment.util.Const;
 import com.performer.player.common.utils.ResultUtil;
 import com.performer.player.common.utils.ReturnMsg;
 import com.performer.player.common.utils.StringUtils;
@@ -16,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin
 @Api(value="comment|评论相关接口")
 public class comment {
     @Autowired
