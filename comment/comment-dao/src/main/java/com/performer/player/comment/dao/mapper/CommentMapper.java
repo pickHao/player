@@ -13,4 +13,5 @@ public interface CommentMapper {
     List<Comment> getCommentList(Comment com);
     void insertComment(Comment com);
     Integer getMaxFloorNum(Comment com);
+    List<Comment> getReplyContent(Comment com);
 }

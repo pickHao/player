@@ -29,4 +29,9 @@ public class CommentImpl implements CommentService{
 	public Integer getMaxFloorNum(Comment com) {
 		return CommentMapper.getMaxFloorNum(com);
 	}
+
+	@Override
+	public List<Comment> getReplyContent(Comment com) {
+		return CommentMapper.getReplyContent(com);
+	}
 }

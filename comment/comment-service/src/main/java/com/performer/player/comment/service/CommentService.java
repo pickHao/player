@@ -9,4 +9,5 @@ public interface CommentService {
     List<Comment> getCommentList(Comment com);
     void insert(Comment com);
     Integer getMaxFloorNum(Comment com);
+    List<Comment> getReplyContent(Comment com);
 }

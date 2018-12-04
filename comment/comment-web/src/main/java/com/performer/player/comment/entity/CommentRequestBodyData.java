@@ -32,6 +32,10 @@ public class CommentRequestBodyData {
 	 * 回复的用户id
 	 */
 	private static final String REPLY_USER_ID = "reuid";
+	/**
+	 * 是否是非回复评论
+	 */
+	private static final String IS_REPLY = "isReply";
 
 	@JsonProperty(CONTENT)
     private String content;
@@ -50,6 +54,13 @@ public class CommentRequestBodyData {
 	
 	@JsonProperty(REPLY_USER_ID)
 	private Long reply_user_id;
+	
+	@JsonProperty(IS_REPLY)
+	private String isReply;
+
+	public String getIsReply() {
+		return isReply;
+	}
 
 	public Long getTheme_id() {
 		return theme_id;

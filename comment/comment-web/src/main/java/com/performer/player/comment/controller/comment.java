@@ -1,7 +1,9 @@
 package com.performer.player.comment.controller;
 
+import com.performer.player.comment.entity.CommentListResponseBodyData;
 import com.performer.player.comment.entity.CommentRequestBodyData;
 import com.performer.player.comment.entity.PraiseRequestBodyData;
+import com.performer.player.comment.entity.replyContent;
 import com.performer.player.comment.impl.CommentImpl;
 import com.performer.player.comment.pojo.Comment;
 import com.performer.player.common.utils.ResultUtil;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,15 +42,55 @@ public class comment {
     	@ApiImplicitParam(paramType = "path", name = "thty", value = "评论的主题类型", required = true, dataType = "String"),
     	@ApiImplicitParam(paramType = "path", name = "thid", value = "评论的帖子对象id", required = true, dataType = "Long"),
     })
-    public List<Comment> getAll(@PathVariable("thid") Long theme_id, @PathVariable("thty") String theme_type){
+    public List<CommentListResponseBodyData> getAll(@PathVariable("thid") Long theme_id, @PathVariable("thty") String theme_type){
     	Comment com = new Comment();
     	com.setTheme_id(theme_id);
     	com.setTheme_type(theme_type);
         List<Comment> coms = commentImpl.getCommentList(com);
-        return coms;
+        List<CommentListResponseBodyData> res = new ArrayList<CommentListResponseBodyData>();
+        for(Comment info:coms) {
+        	CommentListResponseBodyData resData = new CommentListResponseBodyData();
+        	resData.setCommentId(info.getComment_id());
+        	List<replyContent> replyContents = getReply(info.getComment_id(),theme_id,theme_type);
+        	resData.setContent(info.getContent());
+        	resData.setCreateTime(info.getCreate_time());
+        	resData.setNumberOfPraise(info.getNumber_of_praise());
+        	resData.setThemeId(info.getTheme_id());
+        	resData.setThemeType(info.getTheme_type());
+        	resData.setUserId(info.getUser_id());
+        	resData.setReplyContent(replyContents);
+        	res.add(resData);
+        }
+        return res;
     }
 
-    @RequestMapping(value = "/addComment",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    /**
+     * 获取指定楼层的回复评论
+     * @param comment_id
+     * @param theme_type 
+     * @param theme_id 
+     * @return
+     */
+    private List<replyContent> getReply(Integer comment_id, Long theme_id, String theme_type) {
+    	Comment com = new Comment();
+    	com.setComment_id(comment_id);
+    	com.setTheme_id(theme_id);
+    	com.setTheme_type(theme_type);
+    	List<Comment> coms = commentImpl.getReplyContent(com);
+    	List<replyContent> replys = new ArrayList<replyContent>();
+    	for(Comment info:coms) {
+    		replyContent reply = new replyContent();
+    		reply.setContent(info.getContent());
+    		reply.setCreateTime(info.getCreate_time());
+    		reply.setNumberOfPraise(info.getNumber_of_praise());
+    		reply.setUserId(info.getUser_id());
+    		reply.setReplyUserId(info.getReply_user_id());
+    		replys.add(reply);
+    	}
+    	return replys;
+	}
+
+	@RequestMapping(value = "/addComment",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value="评论", notes = "单纯评论，默认点赞数为0")
     @ApiImplicitParams({
     	@ApiImplicitParam(paramType = "query", name = "co", value = "评论内容", required = true, dataType = "String"),
@@ -55,17 +98,27 @@ public class comment {
     	@ApiImplicitParam(paramType = "query", name = "reid", value = "回复的楼层id", required = false, dataType = "Integer"),
     	@ApiImplicitParam(paramType = "query", name = "thty", value = "评论的主题类型", required = true, dataType = "String"),
     	@ApiImplicitParam(paramType = "query", name = "thid", value = "评论的帖子对象id", required = true, dataType = "Long"),
-    	@ApiImplicitParam(paramType = "query", name = "reuid", value = "回复的用户id", required = false, dataType = "Long")
+    	@ApiImplicitParam(paramType = "query", name = "reuid", value = "回复的用户id", required = false, dataType = "Long"),
+    	@ApiImplicitParam(paramType = "query", name = "isReply", value = "是否是非回复评论,默认0是评论，1是回复", required = false, dataType = "String")
     })
     public ReturnMsg<?> addComment(@RequestBody CommentRequestBodyData request){
     	if(paramterCheck(request)){
     		return ResultUtil.error(-101, "参数错误");
     	}
-    	Integer num = searchMaxFloor(request.getTheme_id(),request.getTheme_type());
+    	Comment com = new Comment();
+    	if(StringUtils.isNullOrSpace(request.getIsReply())||request.getIsReply().equals("0")) {
+    		if(request.getReply_id()!=null&&request.getReply_user_id()!=null) {
+    			return ResultUtil.error(-102, "数据冲突，当前为非回复评论，却有回复id");
+    		}
+    		Integer num = searchMaxFloor(request.getTheme_id(),request.getTheme_type());
+    		com.setComment_id(num);
+    		com.setIsReply("0");
+    	}else{
+    		com.setComment_id(request.getReply_id());
+    		com.setIsReply(request.getIsReply());
+    	}
     	
-        Comment com = new Comment();
         com.setContent(request.getContent());
-        com.setComment_id(num);
 //      点赞默认为0
         com.setNumber_of_praise(0);
         com.setUser_id(request.getUser_id());
