@@ -2,6 +2,7 @@ package com.performer.player.comment.impl;
 
 import com.performer.player.comment.dao.mapper.CommentMapper;
 import com.performer.player.comment.pojo.Comment;
+import com.performer.player.comment.pojo.UserInfo;
 import com.performer.player.comment.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,10 @@ public class CommentImpl implements CommentService{
 	@Override
 	public List<Comment> getReplyContent(Comment com) {
 		return CommentMapper.getReplyContent(com);
+	}
+
+	@Override
+	public UserInfo getUserInfo(Long user_id) {
+		return CommentMapper.getUserInfo(user_id);
 	}
 }

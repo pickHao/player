@@ -4,8 +4,10 @@ import com.performer.player.comment.entity.CommentListResponseBodyData;
 import com.performer.player.comment.entity.CommentRequestBodyData;
 import com.performer.player.comment.entity.PraiseRequestBodyData;
 import com.performer.player.comment.entity.replyContent;
+import com.performer.player.comment.entity.userInfo;
 import com.performer.player.comment.impl.CommentImpl;
 import com.performer.player.comment.pojo.Comment;
+import com.performer.player.comment.pojo.UserInfo;
 import com.performer.player.common.utils.ResultUtil;
 import com.performer.player.common.utils.ReturnMsg;
 import com.performer.player.common.utils.StringUtils;
@@ -52,12 +54,13 @@ public class comment {
         	CommentListResponseBodyData resData = new CommentListResponseBodyData();
         	resData.setCommentId(info.getComment_id());
         	List<replyContent> replyContents = getReply(info.getComment_id(),theme_id,theme_type);
+        	userInfo userinfo = getUserInfo(info.getUser_id());
         	resData.setContent(info.getContent());
         	resData.setCreateTime(info.getCreate_time());
         	resData.setNumberOfPraise(info.getNumber_of_praise());
         	resData.setThemeId(info.getTheme_id());
         	resData.setThemeType(info.getTheme_type());
-        	resData.setUserId(info.getUser_id());
+        	resData.setUserInfo(userinfo);
         	resData.setReplyContent(replyContents);
         	res.add(resData);
         }
@@ -80,14 +83,30 @@ public class comment {
     	List<replyContent> replys = new ArrayList<replyContent>();
     	for(Comment info:coms) {
     		replyContent reply = new replyContent();
+    		userInfo user = getUserInfo(info.getUser_id());
+    		userInfo replyUser = getUserInfo(info.getReply_user_id());
     		reply.setContent(info.getContent());
     		reply.setCreateTime(info.getCreate_time());
     		reply.setNumberOfPraise(info.getNumber_of_praise());
-    		reply.setUserId(info.getUser_id());
-    		reply.setReplyUserId(info.getReply_user_id());
+    		reply.setUserInfo(user);
+    		reply.setReplyUserInfo(replyUser);
     		replys.add(reply);
     	}
     	return replys;
+	}
+
+    /**
+     * 获取用户信息
+     * @param user_id
+     * @return
+     */
+	private userInfo getUserInfo(Long user_id) {
+		UserInfo info = commentImpl.getUserInfo(user_id);
+		userInfo user = new userInfo();
+		user.setUserId(user_id);
+		user.setUserName(info.getUser_name());
+		user.setUserImage(info.getUser_image());
+		return user;
 	}
 
 	@RequestMapping(value = "/addComment",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

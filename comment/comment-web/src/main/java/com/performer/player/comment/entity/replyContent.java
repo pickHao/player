@@ -10,7 +10,7 @@ public class replyContent {
 	/**
 	 * 用户id
 	 */
-	public Long userId;
+	public userInfo userInfo;
 	/**
 	 * 创建时间
 	 */
@@ -24,14 +24,14 @@ public class replyContent {
 	 */
 	public String content;
 	/**
-	 * 回复的用户对象id
+	 * 回复的用户对象
 	 */
-	public Long replyUserId;
-	public Long getUserId() {
-		return userId;
+	public userInfo replyUserInfo;
+	public userInfo getUserInfo() {
+		return userInfo;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUserInfo(userInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 	public String getCreateTime() {
 		return createTime;
@@ -51,10 +51,10 @@ public class replyContent {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Long getReplyUserId() {
-		return replyUserId;
+	public userInfo getReplyUserInfo() {
+		return replyUserInfo;
 	}
-	public void setReplyUserId(Long replyUserId) {
-		this.replyUserId = replyUserId;
+	public void setReplyUserInfo(userInfo replyUserInfo) {
+		this.replyUserInfo = replyUserInfo;
 	}
 }

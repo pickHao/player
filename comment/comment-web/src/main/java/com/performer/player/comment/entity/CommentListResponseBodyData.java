@@ -30,9 +30,9 @@ public class CommentListResponseBodyData {
      */
 	public String createTime;
     /**
-     * 用户ID
+     * 用户信息
      */
-	public Long userId;
+	public userInfo userInfo;
     /**
      * 点赞数
      */
@@ -71,11 +71,11 @@ public class CommentListResponseBodyData {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	public Long getUserId() {
-		return userId;
+	public userInfo getUserInfo() {
+		return userInfo;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUserInfo(userInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 	public Integer getNumberOfPraise() {
 		return numberOfPraise;
