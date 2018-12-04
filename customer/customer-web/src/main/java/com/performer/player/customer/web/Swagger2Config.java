@@ -1,4 +1,4 @@
-package com.performer.player.customer.web.util;
+package com.performer.player.customer.web;
 
 
 import org.springframework.context.annotation.Bean;
@@ -31,7 +31,7 @@ public class Swagger2Config {
         return  new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.comstar.cnp.cockpit"))
+                .apis(RequestHandlerSelectors.basePackage("com.performer.player.customer.web"))
                 .paths(PathSelectors.any())
                 .build();
 

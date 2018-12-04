@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.performer.player.customer</groupId>
-    <artifactId>dao</artifactId>
+    <artifactId>customer-dao</artifactId>
     <packaging>jar</packaging>
 
     <properties>
@@ -23,7 +23,7 @@
         <!-- 内部引用 -->
         <dependency>
             <groupId>com.performer.player.customer</groupId>
-            <artifactId>pojo</artifactId>
+            <artifactId>customer-pojo</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

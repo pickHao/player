@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.performer.player.customer</groupId>
-    <artifactId>pojo</artifactId>
+    <artifactId>customer-pojo</artifactId>
     <packaging>jar</packaging>
 
 
