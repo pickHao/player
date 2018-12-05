@@ -1,4 +1,6 @@
 package com.performer.player.customer.web.data;
 
-public class LoginMsg extends RestMessage{
+import com.performer.player.common.utils.RestMessage;
+
+public class LoginMsg extends RestMessage {
 }

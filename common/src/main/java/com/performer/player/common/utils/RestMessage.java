@@ -1,10 +1,11 @@
-package com.performer.player.customer.web.data;
+package com.performer.player.common.utils;
 
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.models.auth.In;
 import lombok.Data;
 
 import java.io.Serializable;
+
+import static com.performer.player.common.utils.CodeMessageLibrary.codeMessageMap;
 
 @Data
 public class RestMessage implements Serializable {
@@ -17,7 +18,7 @@ public class RestMessage implements Serializable {
 
     public void setCode(Integer code){
         this.code = code;
-//        setMessage();
+        setMessage(codeMessageMap.get(getCode()));
     }
 
 }
