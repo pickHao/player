@@ -37,14 +37,14 @@ public class Swagger2Config {
 
     }
 
-//    @Bean
-//    public Docket restConfig() {
-//        return new Docket(DocumentationType.SWAGGER_2).groupName("jax-rs").apiInfo(restInfo()).forCodeGeneration(true)
-//                .pathMapping("/cockpit").select().paths(PathSelectors.any())// 过滤的接口
-//                .build().useDefaultResponseMessages(false);
-//    }
+    @Bean
+    public Docket restConfig() {
+        return new Docket(DocumentationType.SWAGGER_2).groupName("jax-rs").apiInfo(restInfo()).forCodeGeneration(true)
+                .pathMapping("/cockpit").select().paths(PathSelectors.any())// 过滤的接口
+                .build().useDefaultResponseMessages(false);
+    }
 
-
+  // 请求url匹配，支持and or，可以过滤筛选
   /*private Predicate<String> paths() {
        return or(regex("/cockpit/.*"), regex("/rest/.*")); //
    }*/
@@ -53,11 +53,11 @@ public class Swagger2Config {
      * springboot jersery swagger2 的整合
      * @return
      */
-//    private ApiInfo restInfo() {
-//        return new ApiInfoBuilder().title("berheley service rest api ")// 大标题
-//                .description("spring boot webservice 平台 API")// 小标题
-//                .version("2.0").build();
-//    }
+    private ApiInfo restInfo() {
+        return new ApiInfoBuilder().title("berheley service rest api ")// 大标题
+                .description("spring boot webservice 平台 API")// 小标题
+                .version("2.0").build();
+    }
 
     /**
      * springboot springmvc的整合
