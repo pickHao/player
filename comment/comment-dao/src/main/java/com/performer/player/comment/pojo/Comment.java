@@ -35,6 +35,12 @@ public class Comment {
      */
     private Integer number_of_praise;
     /**
+     * 是否是非回复评论 
+     * 0是
+     * 1是回复
+     */
+    private String isReply;
+    /**
      * 回复对象的楼层数
      */
     private Integer reply_id;
@@ -42,7 +48,12 @@ public class Comment {
      * 回复对象的用户id
      */
     private Long reply_user_id;
-    
+	public String getIsReply() {
+		return isReply;
+	}
+	public void setIsReply(String isReply) {
+		this.isReply = isReply;
+	}
 	public Long getId() {
 		return id;
 	}

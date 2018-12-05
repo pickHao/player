@@ -7,12 +7,12 @@ import java.util.List;
  * @author linyunzhe
  *
  */
-public class getCommentListResponseBodyData {
+public class CommentListResponseBodyData {
 
 	/**
 	 * 楼层数（评论id）
 	 */
-	public String commentId;
+	public Integer commentId;
     /**
      * 评论的主题（视频、帖子等）的id
      */
@@ -30,9 +30,9 @@ public class getCommentListResponseBodyData {
      */
 	public String createTime;
     /**
-     * 用户ID
+     * 用户信息
      */
-	public Long userId;
+	public userInfo userInfo;
     /**
      * 点赞数
      */
@@ -41,10 +41,10 @@ public class getCommentListResponseBodyData {
      * 回复楼中的内容
      */
 	public List<replyContent> replyContent;
-	public String getCommentId() {
+	public Integer getCommentId() {
 		return commentId;
 	}
-	public void setCommentId(String commentId) {
+	public void setCommentId(Integer commentId) {
 		this.commentId = commentId;
 	}
 	public Long getThemeId() {
@@ -71,11 +71,11 @@ public class getCommentListResponseBodyData {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	public Long getUserId() {
-		return userId;
+	public userInfo getUserInfo() {
+		return userInfo;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUserInfo(userInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 	public Integer getNumberOfPraise() {
 		return numberOfPraise;
