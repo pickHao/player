@@ -17,5 +17,7 @@ public class CodeConstants {
     //没有查询到数据
     public static final Integer NOT_FOUND_DATA = 2004;
 
+    //登录失败
+    public static final Integer LOGIN_FAILED = 2004;
 
 }

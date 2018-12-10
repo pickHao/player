@@ -1,12 +1,12 @@
 package com.customer.dao.mapper;
 
 
-import com.performer.player.customer.pojo.User;
+import com.customer.dao.data.User;
+import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
 
 public interface UserMapper {
 
-    List<User> getAll();
+    User getUserInfo(@Param("account") String account, @Param("password") String password);
 
 }

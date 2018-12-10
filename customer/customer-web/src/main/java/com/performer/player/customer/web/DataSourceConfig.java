@@ -16,7 +16,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = "com.performer.player.customer.web.dao", sqlSessionFactoryRef = "DBDataSqlSessionFactory")
+@MapperScan(basePackages = "com.customer.dao.mapper", sqlSessionFactoryRef = "DBDataSqlSessionFactory")
 public class DataSourceConfig {
 
     @Bean(name = "DBDataSource")
@@ -30,7 +30,7 @@ public class DataSourceConfig {
      {
          SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
          bean.setDataSource(dataSource);
-         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*Mapper.xml"));
+         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*Mapper.xml"));
          SqlSessionFactory sqlSessionFactory=bean.getObject();
          return sqlSessionFactory;
      }

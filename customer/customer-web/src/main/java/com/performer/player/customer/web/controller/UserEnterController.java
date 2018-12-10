@@ -1,20 +1,19 @@
 package com.performer.player.customer.web.controller;
 
+import com.customer.dao.data.User;
+import com.performer.player.customer.service.UserService;
 import com.performer.player.customer.web.data.LoginMsg;
-import com.performer.player.customer.web.entity.ResultMsg;
-import com.performer.player.customer.web.pojo.User;
-import com.performer.player.customer.web.service.UserService;
 import io.swagger.annotations.*;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import static com.performer.player.common.utils.CodeConstants.LOGIN_FAILED;
+import static com.performer.player.common.utils.CodeConstants.SYSTEM_OK;
 
 @Component
 @Api(value = "用户登陆注册相关的api")
@@ -29,8 +28,8 @@ public class UserEnterController {
     @ApiOperation(value = "用户信息",notes = "根据UserId查询信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "tooken", value = "令牌", paramType = "header", dataType = "string",required = true),
-            @ApiImplicitParam(name = "account", value = "账号", paramType = "form", dataType = "String",required = true),
-            @ApiImplicitParam(name = "account", value = "密码", paramType = "form", dataType = "String",required = true)
+            @ApiImplicitParam(name = "account", value = "账号", paramType = "form", dataType = "string",required = true),
+            @ApiImplicitParam(name = "password", value = "密码", paramType = "form", dataType = "string",required = true)
     })
     @ApiResponses({
             @ApiResponse(code = 200,message = "",response = LoginMsg.class)
@@ -38,20 +37,20 @@ public class UserEnterController {
     @Path("login")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response UserLogin(@RequestHeader String token,
-                             @RequestBody String enterAcount) {
+    public Response UserLogin(@HeaderParam("token") String token,
+                              @FormParam("account") String account,
+                              @FormParam("password") String password)  {
 
         LoginMsg msg = new LoginMsg();
-        String password = "1";
-        User user = service.queryUserInfoByName(enterAcount);
+
+        User user = service.queryUserInfoByName(account,password);
         if (user != null) {
-            if (password.equals(user.getPassword())) {
-                return Response.status(200).entity(msg).build();
-            } else{
-                return Response.status(200).entity(msg).build();
-            }
+            msg.setIsSuccess(true);
+            return Response.status(SYSTEM_OK).entity(msg).build();
         }else{
-            return Response.status(200).entity(msg).build();
+            msg.setIsSuccess(false);
+            msg.setCode(LOGIN_FAILED);
+            return Response.status(SYSTEM_OK).entity(msg).build();
         }
 
     }

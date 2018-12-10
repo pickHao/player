@@ -1,10 +1,14 @@
 package com.performer.player.customer.service;
 
-import com.performer.player.customer.pojo.User;
 
-import java.util.List;
+import com.customer.dao.data.User;
 
 public interface UserService {
 
-    public List<User> getAll();
+    /**
+     * 登录
+     */
+    User queryUserInfoByName(String account, String password);
+
+
 }

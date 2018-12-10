@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 
 @Component
 @Configuration
-@ComponentScan({"com.performer.player.customer.web"})
+@ComponentScan({"com.performer.player.customer.web.controller"})
 public class JerseyConfig extends ResourceConfig {
 
 
