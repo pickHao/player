@@ -39,7 +39,7 @@ public class Comment {
      * 0是
      * 1是回复
      */
-    private String isReply;
+    private boolean isReply;
     /**
      * 回复对象的楼层数
      */
@@ -48,10 +48,10 @@ public class Comment {
      * 回复对象的用户id
      */
     private Long reply_user_id;
-	public String getIsReply() {
+	public boolean getIsReply() {
 		return isReply;
 	}
-	public void setIsReply(String isReply) {
+	public void setIsReply(boolean isReply) {
 		this.isReply = isReply;
 	}
 	public Long getId() {

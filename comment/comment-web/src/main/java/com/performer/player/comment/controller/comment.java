@@ -38,13 +38,13 @@ public class comment {
     @Autowired
     private CommentImpl commentImpl;
 
-    @RequestMapping(value = "/{thty}/{thid}/getAll",method = RequestMethod.GET)
+    @RequestMapping(value = "/{themeType}/{themeId}/getAll",method = RequestMethod.GET)
     @ApiOperation(value = "获取某个视频评论信息")
     @ApiImplicitParams({
-    	@ApiImplicitParam(paramType = "path", name = "thty", value = "评论的主题类型", required = true, dataType = "String"),
-    	@ApiImplicitParam(paramType = "path", name = "thid", value = "评论的帖子对象id", required = true, dataType = "Long"),
+    	@ApiImplicitParam(paramType = "path", name = "themeType", value = "评论的主题类型", required = true, dataType = "String"),
+    	@ApiImplicitParam(paramType = "path", name = "themeId", value = "评论的帖子对象id", required = true, dataType = "Long"),
     })
-    public List<CommentListResponseBodyData> getAll(@PathVariable("thid") Long theme_id, @PathVariable("thty") String theme_type){
+    public List<CommentListResponseBodyData> getAll(@PathVariable("themeId") Long theme_id, @PathVariable("themeType") String theme_type){
     	Comment com = new Comment();
     	com.setTheme_id(theme_id);
     	com.setTheme_type(theme_type);
@@ -112,39 +112,42 @@ public class comment {
 	@RequestMapping(value = "/addComment",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value="评论", notes = "单纯评论，默认点赞数为0")
     @ApiImplicitParams({
-    	@ApiImplicitParam(paramType = "query", name = "co", value = "评论内容", required = true, dataType = "String"),
-    	@ApiImplicitParam(paramType = "query", name = "usid", value = "用户id", required = true, dataType = "Long"),
-    	@ApiImplicitParam(paramType = "query", name = "reid", value = "回复的楼层id", required = false, dataType = "Integer"),
-    	@ApiImplicitParam(paramType = "query", name = "thty", value = "评论的主题类型", required = true, dataType = "String"),
-    	@ApiImplicitParam(paramType = "query", name = "thid", value = "评论的帖子对象id", required = true, dataType = "Long"),
-    	@ApiImplicitParam(paramType = "query", name = "reuid", value = "回复的用户id", required = false, dataType = "Long"),
-    	@ApiImplicitParam(paramType = "query", name = "isReply", value = "是否是非回复评论,默认0是评论，1是回复", required = false, dataType = "String")
+    	@ApiImplicitParam(paramType = "query", name = "content", value = "评论内容", required = true, dataType = "String"),
+    	@ApiImplicitParam(paramType = "query", name = "userId", value = "用户id", required = true, dataType = "Long"),
+    	@ApiImplicitParam(paramType = "query", name = "replyId", value = "回复的楼层id", required = false, dataType = "Integer"),
+    	@ApiImplicitParam(paramType = "query", name = "themeType", value = "评论的主题类型", required = true, dataType = "String"),
+    	@ApiImplicitParam(paramType = "query", name = "themeId", value = "评论的帖子对象id", required = true, dataType = "Long"),
+    	@ApiImplicitParam(paramType = "query", name = "replyUserId", value = "回复的用户id", required = false, dataType = "Long"),
+    	@ApiImplicitParam(paramType = "query", name = "isReply", value = "是否是非回复评论,默认0是评论，1是回复", required = false, dataType = "boolean")
     })
     public ReturnMsg<?> addComment(@RequestBody CommentRequestBodyData request){
     	if(paramterCheck(request)){
     		return ResultUtil.error(-101, "参数错误");
     	}
     	Comment com = new Comment();
-    	if(StringUtils.isNullOrSpace(request.getIsReply())||request.getIsReply().equals("0")) {
-    		if(request.getReply_id()!=null&&request.getReply_user_id()!=null) {
+    	if(!request.getIsReply()) {
+    		if(request.getReplyId()!=null||request.getReplyUserId()!=null) {
     			return ResultUtil.error(-102, "数据冲突，当前为非回复评论，却有回复id");
     		}
-    		Integer num = searchMaxFloor(request.getTheme_id(),request.getTheme_type());
+    		Integer num = searchMaxFloor(request.getThemeId(),request.getThemeType());
     		com.setComment_id(num);
-    		com.setIsReply("0");
+    		com.setIsReply(false);
     	}else{
-    		com.setComment_id(request.getReply_id());
+    		if(request.getReplyId()==null||request.getReplyUserId()==null) {
+    			return ResultUtil.error(-103, "数据冲突，当前为回复评论，缺少回复对象id和楼层数");
+    		}
+    		com.setComment_id(request.getReplyId());
     		com.setIsReply(request.getIsReply());
     	}
     	
         com.setContent(request.getContent());
 //      点赞默认为0
         com.setNumber_of_praise(0);
-        com.setUser_id(request.getUser_id());
-        com.setReply_id(request.getReply_id());
-        com.setReply_user_id(request.getReply_user_id());
-        com.setTheme_id(request.getTheme_id());
-        com.setTheme_type(request.getTheme_type());
+        com.setUser_id(request.getUserId());
+        com.setReply_id(request.getReplyId());
+        com.setReply_user_id(request.getReplyUserId());
+        com.setTheme_id(request.getThemeId());
+        com.setTheme_type(request.getThemeType());
         commentImpl.insert(com);
         Map<String, String> a = new HashMap<String, String>();
         a.put("da", "success");
@@ -196,13 +199,13 @@ public class comment {
 		if(StringUtils.isNullOrSpace(request.getContent())){
 			return true;
 		}
-		if(StringUtils.isNullOrSpace(request.getTheme_type())){
+		if(StringUtils.isNullOrSpace(request.getThemeType())){
 			return true;
 		}
-		if(request.getTheme_id()==null){
+		if(request.getThemeId()==null){
 			return true;
 		}
-		if(request.getUser_id()==null){
+		if(request.getUserId()==null){
 			return true;
 		}
 		return false;
