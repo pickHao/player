@@ -10,5 +10,4 @@ public interface UserService {
      */
     User queryUserInfoByName(String account, String password);
 
-
 }

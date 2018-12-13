@@ -16,7 +16,7 @@ import static com.performer.player.common.utils.CodeConstants.LOGIN_FAILED;
 import static com.performer.player.common.utils.CodeConstants.SYSTEM_OK;
 
 @Component
-@Api(value = "用户登陆注册相关的api")
+@Api(description = "用户登陆注册相关的api",tags = "用于用户登陆注册相关的api")
 @Path("rest")
 public class UserEnterController {
 
@@ -37,9 +37,9 @@ public class UserEnterController {
     @Path("login")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response UserLogin(@HeaderParam("token") String token,
-                              @FormParam("account") String account,
-                              @FormParam("password") String password)  {
+    public Response UserLogin(@ApiParam(hidden = true) @HeaderParam("token") String token,
+                              @ApiParam(hidden = true) @FormParam("account") String account,
+                              @ApiParam(hidden = true) @FormParam("password") String password)  {
 
         LoginMsg msg = new LoginMsg();
 

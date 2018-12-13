@@ -41,8 +41,8 @@ public class JerseyConfig extends ResourceConfig {
         config.setVersion("v1");
         config.setContact("player");
         config.setSchemes(new String[] { "http", "https" });
-        config.setBasePath("/player");
-        config.setResourcePackage("com.performer.player");
+        config.setBasePath("/customer");
+        config.setResourcePackage("com.performer.player.customer.web.controller");
         config.setPrettyPrint(true);
         config.setScan(true);
     }

@@ -1,9 +1,8 @@
-package com.performer.player.customer.impl;
+package com.performer.player.customer.service;
 
 
 import com.customer.dao.data.User;
 import com.customer.dao.mapper.UserMapper;
-import com.performer.player.customer.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

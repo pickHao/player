@@ -40,13 +40,13 @@ public class Swagger2Config {
     @Bean
     public Docket restConfig() {
         return new Docket(DocumentationType.SWAGGER_2).groupName("jax-rs").apiInfo(restInfo()).forCodeGeneration(true)
-                .pathMapping("/cockpit").select().paths(PathSelectors.any())// 过滤的接口
+                .pathMapping("/customer").select().paths(PathSelectors.any())// 过滤的接口
                 .build().useDefaultResponseMessages(false);
     }
 
   // 请求url匹配，支持and or，可以过滤筛选
   /*private Predicate<String> paths() {
-       return or(regex("/cockpit/.*"), regex("/rest/.*")); //
+       return or(regex("/customer/.*"), regex("/rest/.*")); //
    }*/
 
     /**

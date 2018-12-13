@@ -11,11 +11,10 @@
    </resultMap>
 
     <select id="getUserInfo" resultMap="BaseResultMap">
-        SELECT * FROM PLAYER_USER
-        <where>
-            <if test="account !=null">account=${account,jdbcType=#{VARCHAR}}</if>
-            <if test="password !=null">password=${password,jdbcType=#{VARCHAR}}</if>
-        </where>
+        SELECT * FROM PLAYER_USER WHERE
+        account=#{account,jdbcType=VARCHAR}
+        AND
+        password=#{password,jdbcType=VARCHAR}
     </select>
 
 </mapper>
