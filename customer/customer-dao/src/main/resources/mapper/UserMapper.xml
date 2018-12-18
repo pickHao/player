@@ -7,11 +7,11 @@
         <result property="account" column="account" jdbcType="VARCHAR"/>
         <result property="telephoneNumber" column="telephone_number" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
-        <result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
    </resultMap>
 
     <select id="getUserInfo" resultMap="BaseResultMap">
-        SELECT * FROM PLAYER_USER WHERE
+        SELECT * FROM player_user WHERE
         account=#{account,jdbcType=VARCHAR}
         AND
         password=#{password,jdbcType=VARCHAR}

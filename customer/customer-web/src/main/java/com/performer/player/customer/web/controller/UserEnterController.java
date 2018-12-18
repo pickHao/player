@@ -17,7 +17,7 @@ import static com.performer.player.common.utils.CodeConstants.SYSTEM_OK;
 
 @Component
 @Api(description = "用户登陆注册相关的api",tags = "用于用户登陆注册相关的api")
-@Path("rest")
+@Path("")
 public class UserEnterController {
 
     @Resource
