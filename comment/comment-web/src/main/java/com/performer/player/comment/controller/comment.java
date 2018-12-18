@@ -1,5 +1,6 @@
 package com.performer.player.comment.controller;
 
+import com.performer.player.comment.entity.CommentListResponseBody;
 import com.performer.player.comment.entity.CommentListResponseBodyData;
 import com.performer.player.comment.entity.CommentRequestBodyData;
 import com.performer.player.comment.entity.PraiseRequestBodyData;
@@ -31,6 +32,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.performer.player.common.utils.CodeConstants.SYSTEM_OK;
+
 @RestController
 @CrossOrigin
 @Api(value="comment|评论相关接口")
@@ -44,26 +47,30 @@ public class comment {
     	@ApiImplicitParam(paramType = "path", name = "themeType", value = "评论的主题类型", required = true, dataType = "String"),
     	@ApiImplicitParam(paramType = "path", name = "themeId", value = "评论的帖子对象id", required = true, dataType = "Long"),
     })
-    public List<CommentListResponseBodyData> getAll(@PathVariable("themeId") Long theme_id, @PathVariable("themeType") String theme_type){
+    public CommentListResponseBody getAll(@PathVariable("themeId") Long theme_id, @PathVariable("themeType") String theme_type){
+    	CommentListResponseBody res = new CommentListResponseBody();
     	Comment com = new Comment();
     	com.setTheme_id(theme_id);
     	com.setTheme_type(theme_type);
         List<Comment> coms = commentImpl.getCommentList(com);
-        List<CommentListResponseBodyData> res = new ArrayList<CommentListResponseBodyData>();
+        List<CommentListResponseBodyData> resData = new ArrayList<CommentListResponseBodyData>();
         for(Comment info:coms) {
-        	CommentListResponseBodyData resData = new CommentListResponseBodyData();
-        	resData.setCommentId(info.getComment_id());
+        	CommentListResponseBodyData data = new CommentListResponseBodyData();
+        	data.setCommentId(info.getComment_id());
         	List<replyContent> replyContents = getReply(info.getComment_id(),theme_id,theme_type);
         	userInfo userinfo = getUserInfo(info.getUser_id());
-        	resData.setContent(info.getContent());
-        	resData.setCreateTime(info.getCreate_time());
-        	resData.setNumberOfPraise(info.getNumber_of_praise());
-        	resData.setThemeId(info.getTheme_id());
-        	resData.setThemeType(info.getTheme_type());
-        	resData.setUserInfo(userinfo);
-        	resData.setReplyContent(replyContents);
-        	res.add(resData);
+        	data.setContent(info.getContent());
+        	data.setCreateTime(info.getCreate_time());
+        	data.setNumberOfPraise(info.getNumber_of_praise());
+        	data.setThemeId(info.getTheme_id());
+        	data.setThemeType(info.getTheme_type());
+        	data.setUserInfo(userinfo);
+        	data.setReplyContent(replyContents);
+        	resData.add(data);
         }
+        res.setData(resData);
+        res.setCode(SYSTEM_OK);
+        res.setMessage("成功");
         return res;
     }
 
