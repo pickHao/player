@@ -3,7 +3,7 @@
 <mapper namespace="com.performer.player.comment.dao.mapper.CommentMapper">
 
     <select id="getCommentList" resultType="com.performer.player.comment.pojo.Comment">
-        SELECT * FROM PLAYER_COMMENT
+        SELECT * FROM player_comment
         <where>
     		<if test="theme_id !=null">theme_id=${theme_id}</if>
     		<if test="theme_type !=0">AND theme_type=${theme_type}</if>
@@ -15,14 +15,14 @@
         INSERT INTO PLAYER_COMMENT (id,comment_id,theme_id,theme_type,content,user_id,number_of_praise,reply_id,reply_user_id,isReply) values (#{id,jdbcType=INTEGER}, #{comment_id,jdbcType=INTEGER},#{theme_id,jdbcType=INTEGER},#{theme_type,jdbcType=VARCHAR},#{content,jdbcType=VARCHAR},#{user_id,jdbcType=INTEGER},#{number_of_praise,jdbcType=INTEGER},#{reply_id,jdbcType=INTEGER},#{reply_user_id,jdbcType=INTEGER},#{isReply,jdbcType=TINYINT})
     </insert>
     <select id="getMaxFloorNum" resultType="Integer">
-    	SELECT max(comment_id) FROM PLAYER_COMMENT
+    	SELECT max(comment_id) FROM player_comment
     	<where>
     		<if test="theme_id !=null">theme_id=${theme_id}</if>
     		<if test="theme_type !=0">AND theme_type=${theme_type}</if>
     	</where>
     </select>
     <select id="getReplyContent" resultType="com.performer.player.comment.pojo.Comment">
-    	SELECT * FROM PLAYER_COMMENT
+    	SELECT * FROM player_comment
     	<where>
     		<if test="comment_id !=0">comment_id=${comment_id}</if>
     		AND theme_id=${theme_id} AND theme_type=${theme_type} 
@@ -31,7 +31,7 @@
     	ORDER BY create_time
     </select>
     <select id="getUserInfo" resultType="com.performer.player.comment.pojo.UserInfo">
-    	SELECT * FROM PLAYER_USER
+    	SELECT * FROM player_user
     	<where>
     		user_id=#{0}
     	</where>
