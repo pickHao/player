@@ -14,7 +14,7 @@ now = timestamp = Date.parse(new Date()) / 1000;
 
 function show(name){
 	
-	body = send_request("https://fe2o3.club/player/video/getUrl?objectName=test/" + name)
+	body = send_request("https://fe2o3.club/player/video/getUrl?objectName=" + key + name)
 	console.log(body);
 	var da = eval ("(" + body + ")");
 	document.getElementById('showimg').src = da['url'];
@@ -216,7 +216,7 @@ var uploader = new plupload.Uploader({
             {
                 document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = info.response;
             }
-            show(filename);
+            show(file.name);
 		},
 
 		Error: function(up, err) {
