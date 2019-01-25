@@ -12,12 +12,19 @@ g_object_name = ''
 g_object_name_type = ''
 now = timestamp = Date.parse(new Date()) / 1000; 
 
-function show(name){
-	
+function show(name,type){
+	type = type.split("/")[0];
 	body = send_request("https://fe2o3.club/player/video/getUrl?objectName=" + key + name)
 	console.log(body);
 	var da = eval ("(" + body + ")");
-	document.getElementById('showimg').src = da['url'];
+	if(type == 'image'){		
+		document.getElementById('showimg').src = da['url'];
+	}else if(type == 'video'){		
+		document.getElementById('showvideo').src = da['url'];
+	}else {
+		alert("上传文件非视频和图片！");
+		console.log("上传文件非视频和图片！")
+	}
 }
 
 function send_request(serverUrl)
@@ -216,7 +223,7 @@ var uploader = new plupload.Uploader({
             {
                 document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = info.response;
             }
-            show(file.name);
+            show(file.name,file.type);
 		},
 
 		Error: function(up, err) {
