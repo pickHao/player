@@ -12,7 +12,22 @@ g_object_name = ''
 g_object_name_type = ''
 now = timestamp = Date.parse(new Date()) / 1000; 
 
-function send_request()
+function show(name,type){
+	type = type.split("/")[0];
+	body = send_request("https://fe2o3.club/player/video/getUrl?objectName=" + key + name)
+	console.log(body);
+	var da = eval ("(" + body + ")");
+	if(type == 'image'){		
+		document.getElementById('showimg').src = da['url'];
+	}else if(type == 'video'){		
+		document.getElementById('showvideo').src = da['url'];
+	}else {
+		alert("上传文件非视频和图片！");
+		console.log("上传文件非视频和图片！")
+	}
+}
+
+function send_request(serverUrl)
 {
     var xmlhttp = null;
     if (window.XMLHttpRequest)
@@ -27,7 +42,7 @@ function send_request()
     if (xmlhttp!=null)
     {
         // serverUrl是 用户获取 '签名和Policy' 等信息的应用服务器的URL，请将下面的IP和Port配置为您自己的真实信息。
-        serverUrl = 'https://fe2o3.club/player/video/getOssSign'
+//        serverUrl = 'https://fe2o3.club/player/video/getOssSign'
 		
         xmlhttp.open( "GET", serverUrl, false );
         xmlhttp.send( null );
@@ -57,7 +72,7 @@ function get_signature()
     now = timestamp = Date.parse(new Date()) / 1000; 
     if (expire < now + 3)
     {
-        body = send_request()
+        body = send_request("https://fe2o3.club/player/video/getOssSign")
         var obj = eval ("(" + body + ")");
         host = obj['host']
         policyBase64 = obj['policy']
@@ -137,7 +152,7 @@ function set_upload_param(up, filename, ret)
         'callback' : callbackbody,
         'signature': signature,
     };
-
+    console.log(g_object_name);
     up.setOption({
         'url': host,
         'multipart_params': new_multipart_params
@@ -207,7 +222,8 @@ var uploader = new plupload.Uploader({
             else
             {
                 document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = info.response;
-            } 
+            }
+            show(file.name,file.type);
 		},
 
 		Error: function(up, err) {

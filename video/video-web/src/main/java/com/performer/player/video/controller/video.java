@@ -6,6 +6,8 @@ import com.aliyun.oss.model.PolicyConditions;
 import com.google.gson.Gson;
 import com.performer.player.video.entity.callBackBodyData;
 import com.performer.player.video.entity.getOssSignResponseBodyData;
+import com.performer.player.video.entity.getUrlRequestBodyData;
+import com.performer.player.video.entity.getUrlResponseBodyData;
 
 import net.sf.json.JSONObject;
 
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
+import java.net.URL;
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
@@ -134,6 +137,22 @@ public class video {
 			response(request, response, "{\"Status\":\"verdify not ok\"}", HttpServletResponse.SC_BAD_REQUEST);
 		}
 	}
+  	
+  	@RequestMapping(value = "/getUrl",method = RequestMethod.GET)
+  	public getUrlResponseBodyData getUrl(getUrlRequestBodyData request) {
+  		getUrlResponseBodyData res = new getUrlResponseBodyData();
+  		String objectName = request.getObjectName();
+	  	// 创建OSSClient实例。
+	  	OSSClient ossClient = new OSSClient(endpoint, accessId, accessKey);
+	  	// 设置URL过期时间为1小时。
+	  	Date expiration = new Date(new Date().getTime() + expireTime * 1000);
+	  	// 生成以GET方法访问的签名URL，访客可以直接通过浏览器访问相关内容。
+	  	URL url = ossClient.generatePresignedUrl(bucket, objectName, expiration);
+	  	res.setUrl(url.toString());
+	  	// 关闭OSSClient。
+	  	ossClient.shutdown();
+		return res;
+  	}
   	
   	/**
 	 * 获取public key
