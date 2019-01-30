@@ -22,7 +22,7 @@ public class CreateTokenServiceImpl implements CreateTokenService{
     public synchronized String generateToken(String user) {
 
         Map userTokenMap = redissonClient.getMap(USER_TOKEN_KEY);
-        String uuid = String.format("%s:",UUID.randomUUID().toString());
+        String uuid = String.format("%s:%s",UUID.randomUUID().toString(),user);
 
         if(userTokenMap == null){
             userTokenMap = new HashMap();

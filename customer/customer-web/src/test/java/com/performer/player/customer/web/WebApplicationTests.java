@@ -12,15 +12,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 import java.util.Map;
 
+import static com.performer.player.customer.service.CreateTokenServiceImpl.USER_TOKEN_KEY;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class WebApplicationTests {
 
     @Resource
     StringRedisTemplate stringRedisTemplate;
-
-    @Resource
-    Redisson redisson;
 
     @Resource
     RedissonClient redissonClient;
@@ -37,9 +36,11 @@ public class WebApplicationTests {
     @Test
     public void test01(){
 
-        Map map = redissonClient.getMap("");
+        Map map = redissonClient.getMap(USER_TOKEN_KEY);
 
+        String s = (String)map.get("root1");
 
+        System.out.println("!!!!"+s);
     }
 
 

@@ -12,4 +12,7 @@ public class LoginMsg extends RestMessage {
     @ApiModelProperty(value = "登录结果")
     private Boolean isSuccess;
 
+    @ApiModelProperty(value = "登录成功后生成的token")
+    private String token;
+
 }
