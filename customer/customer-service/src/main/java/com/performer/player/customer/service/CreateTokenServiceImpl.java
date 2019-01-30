@@ -2,6 +2,7 @@ package com.performer.player.customer.service;
 
 import jodd.util.StringUtil;
 import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,14 +14,14 @@ import java.util.UUID;
 public class CreateTokenServiceImpl implements CreateTokenService{
 
     @Resource
-    private Redisson redisson;
+    private RedissonClient redissonClient;
 
     public static final String USER_TOKEN_KEY = "USER_TOKEN";
 
     @Override
     public synchronized String generateToken(String user) {
 
-        Map userTokenMap = redisson.getMap(USER_TOKEN_KEY);
+        Map userTokenMap = redissonClient.getMap(USER_TOKEN_KEY);
         String uuid = String.format("%s:",UUID.randomUUID().toString());
 
         if(userTokenMap == null){
@@ -34,23 +35,34 @@ public class CreateTokenServiceImpl implements CreateTokenService{
         }
 
         return uuid;
+
     }
 
     @Override
     public String getUserByToken(String token){
 
         if(StringUtil.isNotBlank(token)){
-            Map userTokenMap = redisson.getMap(USER_TOKEN_KEY);
-            if(userTokenMap != null){
-                for(Object key : userTokenMap.keySet()){
-                    if(token.equals(userTokenMap.get(key))){
-                        return (String)key;
-                    }
-                }
-            }
-        }
-        return "";
-    }
 
+            Map userTokenMap = redissonClient.getMap(USER_TOKEN_KEY);
+
+            if(userTokenMap != null){
+
+                for(Object key : userTokenMap.keySet()){
+
+                    if(token.equals(userTokenMap.get(key))){
+
+                        return (String)key;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        return "";
+
+    }
 
 }

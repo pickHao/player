@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RedissonConfig {
 
-    @Value("${sping.redis.host}")
+    @Value("${spring.redis.host}")
     private String host;
 
     @Value("${spring.redis.password}")
@@ -24,9 +24,10 @@ public class RedissonConfig {
 
         Config config = new Config();
 
-        config.useSingleServer().setAddress("redis://" + host + ":" + port).setAddress(password);
+        config.useSingleServer().setAddress("redis://" + host + ":" + port);
 
         return Redisson.create(config);
+
     }
 
 
