@@ -42,27 +42,16 @@ public class CreateTokenServiceImpl implements CreateTokenService{
     public String getUserByToken(String token){
 
         if(StringUtil.isNotBlank(token)){
-
             Map userTokenMap = redissonClient.getMap(USER_TOKEN_KEY);
-
             if(userTokenMap != null){
-
                 for(Object key : userTokenMap.keySet()){
-
                     if(token.equals(userTokenMap.get(key))){
-
                         return (String)key;
-
                     }
-
                 }
-
             }
-
         }
-
         return "";
-
     }
 
 }
