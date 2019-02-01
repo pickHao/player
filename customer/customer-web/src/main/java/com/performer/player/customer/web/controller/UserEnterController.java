@@ -4,6 +4,7 @@ import com.customer.dao.data.User;
 import com.performer.player.customer.service.CreateTokenService;
 import com.performer.player.customer.service.UserService;
 import com.performer.player.customer.web.data.LoginMsg;
+import com.performer.player.customer.web.data.RegistrationMsg;
 import io.swagger.annotations.*;
 
 import org.redisson.api.RedissonClient;
@@ -70,6 +71,24 @@ public class UserEnterController {
             return Response.status(SYSTEM_OK).entity(msg).build();
         }
 
+    }
+
+    @ApiOperation(value = "用户注册", notes = "用户注册")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "account" ,value = "z")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 200 ,message = "",response = RegistrationMsg.class)
+    })
+    @Path("register")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response UserRegistration(@ApiParam(hidden = true) @FormParam("account") String acount,
+                                     @ApiParam(hidden = true) @FormParam("account") String a){
+
+
+
+        return Response.status(SYSTEM_OK).build();
     }
 
 
