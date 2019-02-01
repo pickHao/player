@@ -2,6 +2,7 @@ package com.performer.player.customer.web;
 
 
 import com.performer.player.customer.web.controller.UserEnterController;
+import com.performer.player.customer.web.interceptor.InterceptorConfig;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.AcceptHeaderApiListingResource;
 import io.swagger.jaxrs.listing.ApiListingResource;
@@ -16,7 +17,7 @@ import javax.annotation.PostConstruct;
 
 @Component
 @Configuration
-@ComponentScan({"com.performer.player.customer.web.controller"})
+@ComponentScan({"com.performer.player.customer"})
 public class JerseyConfig extends ResourceConfig {
 
 
@@ -24,7 +25,7 @@ public class JerseyConfig extends ResourceConfig {
 
         //注册你的请求接口
         this.register(UserEnterController.class);
-
+//        this.register(InterceptorConfig.class);
     }
     @PostConstruct
     public void init() {
